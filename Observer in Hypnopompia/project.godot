@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Hypnopompic Observer"
+config/name="Observer in Hypnopompia"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
