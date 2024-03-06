@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://hylnr25f8v8n"]
+[gd_scene load_steps=20 format=3 uid="uid://hylnr25f8v8n"]
 
 [ext_resource type="Texture2D" uid="uid://ctg2t3wiae7jo" path="res://test/eye_test.png" id="1_dg1f1"]
 [ext_resource type="Shader" path="res://test/test.gdshader" id="2_stj0m"]
 [ext_resource type="Texture2D" uid="uid://cetyw1tfdoh2e" path="res://test/test_bakcground.png" id="3_071tn"]
+[ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="4_300yu"]
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/First Section Enemies/white_circle.png" id="5_nxpov"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="5_rdoud"]
 
 [sub_resource type="Gradient" id="Gradient_p41bo"]
 offsets = PackedFloat32Array(0)
@@ -11,7 +14,15 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qcvj7"]
 gradient = SubResource("Gradient_p41bo")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5rp2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kiek3"]
+radius = 73.171
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvm2g"]
+shader = ExtResource("2_stj0m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pe2r"]
 shader = ExtResource("2_stj0m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jrr4"]
@@ -23,63 +34,110 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uj618"]
 gradient = SubResource("Gradient_1hmup")
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.518349, 0.5)
-fill_to = Vector2(0.848624, 0.247706)
+fill_to = Vector2(0.775229, 0.288991)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cl54"]
-shader = ExtResource("2_stj0m")
+[sub_resource type="Gradient" id="Gradient_foqdd"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4q7e"]
-shader = ExtResource("2_stj0m")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_611mx"]
+gradient = SubResource("Gradient_foqdd")
 
-[sub_resource type="Gradient" id="Gradient_d8nuf"]
-offsets = PackedFloat32Array(0, 0.987013)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_me54d"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvf2w"]
-gradient = SubResource("Gradient_d8nuf")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x085v"]
+gradient = SubResource("Gradient_me54d")
 
 [node name="Test" type="Node2D"]
+
+[node name="TestBakcground" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 547)
+texture = ExtResource("3_071tn")
 
 [node name="InvertedObjects" type="Node2D" parent="."]
 
 [node name="EyeTest" type="Sprite2D" parent="."]
-position = Vector2(926, 569)
+position = Vector2(918, 572)
 scale = Vector2(1.13281, 1)
 texture = ExtResource("1_dg1f1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1606, 648)
+[node name="testbox-invert" type="Sprite2D" parent="."]
+position = Vector2(1528, 665)
 scale = Vector2(1.13281, 1)
 texture = SubResource("GradientTexture2D_qcvj7")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(417, 607)
+
+[node name="hitboxtest" type="RigidBody2D" parent="."]
+position = Vector2(1686, 852)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxtest"]
+shape = SubResource("CircleShape2D_j5rp2")
+
+[node name="HitBox" type="Area2D" parent="hitboxtest"]
+script = ExtResource("5_rdoud")
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxtest/HitBox"]
+shape = SubResource("CircleShape2D_kiek3")
+
+[node name="WhiteCircle" type="Sprite2D" parent="hitboxtest"]
+position = Vector2(-9, 14)
+texture = ExtResource("5_nxpov")
+
+[node name="InverterStuff" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="InverterStuff"]
 visible = false
 material = SubResource("ShaderMaterial_jvm2g")
 offset_right = 1918.0
 offset_bottom = 1098.0
+color = Color(1, 1, 1, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="InverterStuff"]
+material = SubResource("ShaderMaterial_4pe2r")
+offset_right = 696.0
+offset_bottom = 145.0
+
+[node name="ColorRect4" type="ColorRect" parent="InverterStuff"]
+material = SubResource("ShaderMaterial_4pe2r")
+offset_left = 7.0
+offset_top = 195.0
+offset_right = 180.0
+offset_bottom = 1077.0
+
+[node name="ColorRect3" type="ColorRect" parent="InverterStuff"]
+material = SubResource("ShaderMaterial_4pe2r")
+offset_left = 1450.0
+offset_top = 1082.0
+offset_right = 2146.0
+offset_bottom = 1227.0
+rotation = -0.792927
+
+[node name="Sprite2D2" type="Sprite2D" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4jrr4")
-position = Vector2(910, 550)
-scale = Vector2(3.01994, 3.01994)
+position = Vector2(907, 559)
+scale = Vector2(3.09994, 3.01994)
 texture = SubResource("GradientTexture2D_uj618")
 
-[node name="TestBakcground" type="Sprite2D" parent="."]
-visible = false
-z_index = 1
-material = SubResource("ShaderMaterial_4cl54")
-position = Vector2(1101, 570)
-scale = Vector2(1.13281, 1)
-texture = ExtResource("3_071tn")
+[node name="testbox2-black" type="Sprite2D" parent="."]
+position = Vector2(502, 479)
+texture = SubResource("GradientTexture2D_611mx")
+
+[node name="testbox3-white" type="Sprite2D" parent="."]
+position = Vector2(1354, 788)
+texture = SubResource("GradientTexture2D_x085v")
 
 [node name="NormalSprites" type="Node2D" parent="."]
-
-[node name="Sprite2D2" type="Sprite2D" parent="NormalSprites"]
-material = SubResource("ShaderMaterial_o4q7e")
-position = Vector2(1020, 218)
-texture = SubResource("GradientTexture2D_bvf2w")
+visible = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="NormalSprites"]
 position = Vector2(-213, 334)

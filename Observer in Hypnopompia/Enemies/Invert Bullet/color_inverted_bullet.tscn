@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://byuqrwqmhr183"]
+
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/First Section Enemies/white_circle.png" id="1_aim3y"]
+
+[node name="ColorInvertedBullet" type="Node2D"]
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_aim3y")
