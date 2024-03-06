@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c30k3tgjk8k65"]
+
+[node name="Enemy" type="Node2D"]
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]

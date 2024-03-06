@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://hylnr25f8v8n"]
+
+[ext_resource type="Texture2D" uid="uid://ctg2t3wiae7jo" path="res://test/eye_test.png" id="1_dg1f1"]
+[ext_resource type="Shader" path="res://test/test.gdshader" id="2_stj0m"]
+[ext_resource type="Texture2D" uid="uid://cetyw1tfdoh2e" path="res://test/test_bakcground.png" id="3_071tn"]
+
+[sub_resource type="Gradient" id="Gradient_p41bo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qcvj7"]
+gradient = SubResource("Gradient_p41bo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvm2g"]
+shader = ExtResource("2_stj0m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jrr4"]
+shader = ExtResource("2_stj0m")
+
+[sub_resource type="Gradient" id="Gradient_1hmup"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uj618"]
+gradient = SubResource("Gradient_1hmup")
+fill = 1
+fill_from = Vector2(0.518349, 0.5)
+fill_to = Vector2(0.848624, 0.247706)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cl54"]
+shader = ExtResource("2_stj0m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4q7e"]
+shader = ExtResource("2_stj0m")
+
+[sub_resource type="Gradient" id="Gradient_d8nuf"]
+offsets = PackedFloat32Array(0, 0.987013)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvf2w"]
+gradient = SubResource("Gradient_d8nuf")
+
+[node name="Test" type="Node2D"]
+
+[node name="InvertedObjects" type="Node2D" parent="."]
+
+[node name="EyeTest" type="Sprite2D" parent="."]
+position = Vector2(926, 569)
+scale = Vector2(1.13281, 1)
+texture = ExtResource("1_dg1f1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1606, 648)
+scale = Vector2(1.13281, 1)
+texture = SubResource("GradientTexture2D_qcvj7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_jvm2g")
+offset_right = 1918.0
+offset_bottom = 1098.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4jrr4")
+position = Vector2(910, 550)
+scale = Vector2(3.01994, 3.01994)
+texture = SubResource("GradientTexture2D_uj618")
+
+[node name="TestBakcground" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_4cl54")
+position = Vector2(1101, 570)
+scale = Vector2(1.13281, 1)
+texture = ExtResource("3_071tn")
+
+[node name="NormalSprites" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="NormalSprites"]
+material = SubResource("ShaderMaterial_o4q7e")
+position = Vector2(1020, 218)
+texture = SubResource("GradientTexture2D_bvf2w")
+
+[node name="Sprite2D3" type="Sprite2D" parent="NormalSprites"]
+position = Vector2(-213, 334)
+scale = Vector2(1.13281, 1)
+texture = SubResource("GradientTexture2D_qcvj7")
