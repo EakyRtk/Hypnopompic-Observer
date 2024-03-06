@@ -1,9 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://byuqrwqmhr183"]
+[gd_scene load_steps=7 format=3 uid="uid://byuqrwqmhr183"]
 
-[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/First Section Enemies/white_circle.png" id="1_aim3y"]
+[ext_resource type="Script" path="res://Enemies/Invert Bullet/color_inverted_bullet.gd" id="1_54ai0"]
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="1_aim3y"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_05qtv"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="3_uun7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xhp"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ej64g"]
+radius = 13.0
 
 [node name="ColorInvertedBullet" type="Node2D"]
+script = ExtResource("1_54ai0")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_aim3y")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_05qtv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_55xhp")
+debug_color = Color(0.882353, 0, 0.25098, 0.588235)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_uun7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_ej64g")
+debug_color = Color(0.772549, 0.443137, 0, 0.419608)

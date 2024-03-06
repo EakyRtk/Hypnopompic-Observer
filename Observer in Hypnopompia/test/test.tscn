@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://hylnr25f8v8n"]
+[gd_scene load_steps=18 format=3 uid="uid://hylnr25f8v8n"]
 
 [ext_resource type="Texture2D" uid="uid://ctg2t3wiae7jo" path="res://test/eye_test.png" id="1_dg1f1"]
-[ext_resource type="Shader" path="res://test/test.gdshader" id="2_stj0m"]
+[ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="2_stj0m"]
 [ext_resource type="Texture2D" uid="uid://cetyw1tfdoh2e" path="res://test/test_bakcground.png" id="3_071tn"]
 [ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="4_300yu"]
-[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/First Section Enemies/white_circle.png" id="5_nxpov"]
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="5_nxpov"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="5_rdoud"]
 
 [sub_resource type="Gradient" id="Gradient_p41bo"]
@@ -27,18 +27,6 @@ shader = ExtResource("2_stj0m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jrr4"]
 shader = ExtResource("2_stj0m")
-
-[sub_resource type="Gradient" id="Gradient_1hmup"]
-interpolation_mode = 1
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uj618"]
-gradient = SubResource("Gradient_1hmup")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.518349, 0.5)
-fill_to = Vector2(0.775229, 0.288991)
 
 [sub_resource type="Gradient" id="Gradient_foqdd"]
 offsets = PackedFloat32Array(0)
@@ -64,7 +52,7 @@ texture = ExtResource("3_071tn")
 [node name="InvertedObjects" type="Node2D" parent="."]
 
 [node name="EyeTest" type="Sprite2D" parent="."]
-position = Vector2(918, 572)
+position = Vector2(960, 540)
 scale = Vector2(1.13281, 1)
 texture = ExtResource("1_dg1f1")
 
@@ -74,10 +62,29 @@ scale = Vector2(1.13281, 1)
 texture = SubResource("GradientTexture2D_qcvj7")
 
 [node name="Enemy" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(417, 607)
+position = Vector2(173, 486)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(251, -96)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(725, -194)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(1511, -121)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(1831, 320)
+
+[node name="Enemy6" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(1851, 1018)
+
+[node name="Enemy7" parent="." instance=ExtResource("4_300yu")]
+position = Vector2(803, 1169)
 
 [node name="hitboxtest" type="RigidBody2D" parent="."]
-position = Vector2(1686, 852)
+position = Vector2(1336, 126)
+gravity_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxtest"]
 shape = SubResource("CircleShape2D_j5rp2")
@@ -116,24 +123,23 @@ offset_bottom = 1077.0
 
 [node name="ColorRect3" type="ColorRect" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4pe2r")
-offset_left = 1450.0
-offset_top = 1082.0
-offset_right = 2146.0
-offset_bottom = 1227.0
+offset_left = 1001.0
+offset_top = 1062.0
+offset_right = 1697.0
+offset_bottom = 1207.0
 rotation = -0.792927
 
 [node name="Sprite2D2" type="Sprite2D" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4jrr4")
-position = Vector2(907, 559)
-scale = Vector2(3.09994, 3.01994)
-texture = SubResource("GradientTexture2D_uj618")
+position = Vector2(960, 540)
+texture = ExtResource("5_nxpov")
 
 [node name="testbox2-black" type="Sprite2D" parent="."]
-position = Vector2(502, 479)
+position = Vector2(918, 141)
 texture = SubResource("GradientTexture2D_611mx")
 
 [node name="testbox3-white" type="Sprite2D" parent="."]
-position = Vector2(1354, 788)
+position = Vector2(2327, 493)
 texture = SubResource("GradientTexture2D_x085v")
 
 [node name="NormalSprites" type="Node2D" parent="."]

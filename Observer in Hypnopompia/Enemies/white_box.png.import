@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iusgnv16gbp0"
-path="res://.godot/imported/white_circle.png-32ebc3dcb84f349ad30153e8f699fc75.ctex"
+uid="uid://dc3i0dgjb4fs4"
+path="res://.godot/imported/white_box.png-5257ae548c297319acdb739ab2cd253a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/First Section Enemies/white_circle.png"
-dest_files=["res://.godot/imported/white_circle.png-32ebc3dcb84f349ad30153e8f699fc75.ctex"]
+source_file="res://Enemies/white_box.png"
+dest_files=["res://.godot/imported/white_box.png-5257ae548c297319acdb739ab2cd253a.ctex"]
 
 [params]
 

@@ -2,20 +2,28 @@
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
-[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/First Section Enemies/white_circle.png" id="2_5xwjj"]
+[ext_resource type="Texture2D" uid="uid://dc3i0dgjb4fs4" path="res://Enemies/white_box.png" id="2_13wuu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i1ktn"]
-radius = 36.0555
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cokcj"]
+size = Vector2(70, 70)
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_88fdb")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_5xwjj")
+texture = ExtResource("2_13wuu")
+metadata/_edit_lock_ = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 script = ExtResource("1_4ijcw")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CircleShape2D_i1ktn")
+shape = SubResource("RectangleShape2D_cokcj")
+debug_color = Color(0.886275, 0.290196, 0.411765, 0.419608)
+
+[node name="EvasionCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootingCooldown" type="Timer" parent="."]

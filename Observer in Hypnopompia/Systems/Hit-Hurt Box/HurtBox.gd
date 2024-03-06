@@ -1,7 +1,9 @@
 class_name HurtBox extends Area2D
 
+enum DetectType {TypHurt, TypEvade}
+
 @export_enum("Enemy", "Player") var hurt_from = 1
-@export_enum("HurtBox", "EvadeBox") var detect_type = 0
+@export var detect_type : DetectType = 0
 var parent
 
 func _init():
@@ -14,7 +16,10 @@ func _ready():
 	parent = get_parent()
 	
 func _hurt(area: HitBox):
-	#print("dayum")
+	if detect_type == DetectType.TypEvade and parent.has_method("evade"):
+		parent.evade()
+		return
+		
 	if area.type == hurt_from and parent.has_method("hurt"):
 		#print("called hurt on parent")
 		parent.hurt()
