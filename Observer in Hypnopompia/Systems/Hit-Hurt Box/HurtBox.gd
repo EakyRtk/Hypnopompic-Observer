@@ -3,7 +3,7 @@ class_name HurtBox extends Area2D
 enum DetectType {TypHurt, TypEvade}
 
 @export_enum("Enemy", "Player") var hurt_from = 1
-@export var detect_type : DetectType = 0
+@export var detect_type : DetectType = DetectType.TypHurt
 var parent
 
 func _init():

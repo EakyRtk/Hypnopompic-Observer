@@ -26,4 +26,4 @@ debug_color = Color(0.886275, 0.290196, 0.411765, 0.419608)
 [node name="EvasionCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="ShootingCooldown" type="Timer" parent="."]
+[node name="SequenceCooldown" type="Timer" parent="."]
