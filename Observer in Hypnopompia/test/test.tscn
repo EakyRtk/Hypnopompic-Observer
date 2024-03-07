@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://hylnr25f8v8n"]
+[gd_scene load_steps=21 format=3 uid="uid://hylnr25f8v8n"]
 
 [ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="2_stj0m"]
 [ext_resource type="Texture2D" uid="uid://ccay83kb64imt" path="res://Player/eye_b.png" id="2_ye4ly"]
+[ext_resource type="Script" path="res://Player/player.gd" id="3_3uvl8"]
 [ext_resource type="Texture2D" uid="uid://cetyw1tfdoh2e" path="res://test/test_bakcground.png" id="3_071tn"]
 [ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="4_300yu"]
 [ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="5_nxpov"]
@@ -53,7 +54,40 @@ texture = ExtResource("3_071tn")
 
 [node name="InvertedObjects" type="Node2D" parent="."]
 
-[node name="EyeTest" type="Sprite2D" parent="."]
+[node name="Enemy" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(119, 17)
+
+[node name="Enemy2" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(540, 65)
+
+[node name="Enemy11" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(939, -42)
+
+[node name="Enemy12" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(987, 80)
+
+[node name="Enemy13" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(1448, 414)
+
+[node name="Enemy14" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(1768, 10)
+
+[node name="Enemy15" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(1547, 1037)
+
+[node name="Enemy16" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(1830, 734)
+
+[node name="Enemy17" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(857, 864)
+
+[node name="Enemy18" parent="InvertedObjects" instance=ExtResource("4_300yu")]
+position = Vector2(167, 1206)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_3uvl8")
+
+[node name="EyeTest" type="Sprite2D" parent="Node2D"]
 position = Vector2(960, 540)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ye4ly")
@@ -64,36 +98,8 @@ position = Vector2(1528, 665)
 scale = Vector2(1.13281, 1)
 texture = SubResource("GradientTexture2D_qcvj7")
 
-[node name="Enemy" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(173, 486)
-color_type = 1
-
-[node name="Enemy2" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(251, -96)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(725, -194)
-
-[node name="Enemy4" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(1511, -121)
-
-[node name="Enemy5" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(2035, 263)
-
-[node name="Enemy6" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(2055, 961)
-
-[node name="Enemy8" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(-194, 215)
-
-[node name="Enemy9" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(-174, 913)
-
-[node name="Enemy7" parent="." instance=ExtResource("4_300yu")]
-position = Vector2(803, 1169)
-
 [node name="hitboxtest" type="RigidBody2D" parent="."]
-position = Vector2(1336, 126)
+position = Vector2(2504, 301)
 gravity_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxtest"]
@@ -111,6 +117,7 @@ position = Vector2(-9, 14)
 texture = ExtResource("5_nxpov")
 
 [node name="InverterStuff" type="Node2D" parent="."]
+z_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="InverterStuff"]
 visible = false

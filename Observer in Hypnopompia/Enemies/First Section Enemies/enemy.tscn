@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c30k3tgjk8k65"]
+[gd_scene load_steps=6 format=3 uid="uid://c30k3tgjk8k65"]
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
@@ -7,7 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cokcj"]
 size = Vector2(70, 70)
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="Curve" id="Curve_wfn3f"]
+_data = [Vector2(0, 1), 0.0, -13.3104, 0, 0, Vector2(0.484211, 0.549451), -2.81414, -2.81414, 0, 0, Vector2(0.826316, 0.340659), 0.0, 0.0, 0, 0, Vector2(1, 0.153846), -13.0495, 0.0, 0, 0]
+point_count = 4
+
+[node name="Enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_88fdb")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
@@ -27,3 +31,11 @@ debug_color = Color(0.886275, 0.290196, 0.411765, 0.419608)
 one_shot = true
 
 [node name="SequenceCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="breakline" type="Line2D" parent="."]
+width = 40.0
+width_curve = SubResource("Curve_wfn3f")
+
+[connection signal="timeout" from="SequenceCooldown" to="." method="_do_sequence"]
