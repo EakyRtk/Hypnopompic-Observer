@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Observer in Hypnopompia"
+config/description="This game is made by EakyRtk for Acerola Jam 0. "
+config/version="0.1.0"
+run/main_scene="res://test/test.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [display]
 
