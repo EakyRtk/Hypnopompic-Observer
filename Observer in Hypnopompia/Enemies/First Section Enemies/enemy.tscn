@@ -1,21 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c30k3tgjk8k65"]
+[gd_scene load_steps=7 format=3 uid="uid://c30k3tgjk8k65"]
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
 [ext_resource type="Texture2D" uid="uid://dc3i0dgjb4fs4" path="res://Enemies/white_box.png" id="2_13wuu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cokcj"]
-size = Vector2(70, 70)
+size = Vector2(54, 54)
 
 [sub_resource type="Curve" id="Curve_wfn3f"]
 _data = [Vector2(0, 1), 0.0, -13.3104, 0, 0, Vector2(0.484211, 0.549451), -2.81414, -2.81414, 0, 0, Vector2(0.826316, 0.340659), 0.0, 0.0, 0, 0, Vector2(1, 0.153846), -13.0495, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8tbc"]
+radius = 151.083
+
 [node name="Enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_88fdb")
+bullet_size = 2
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_13wuu")
 metadata/_edit_lock_ = true
 
@@ -28,6 +32,7 @@ shape = SubResource("RectangleShape2D_cokcj")
 debug_color = Color(0.886275, 0.290196, 0.411765, 0.419608)
 
 [node name="EvasionCooldown" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="SequenceCooldown" type="Timer" parent="."]
@@ -38,4 +43,13 @@ one_shot = true
 width = 40.0
 width_curve = SubResource("Curve_wfn3f")
 
+[node name="EvasionBox" type="Area2D" parent="."]
+script = ExtResource("1_4ijcw")
+detect_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvasionBox"]
+shape = SubResource("CircleShape2D_p8tbc")
+debug_color = Color(0, 0.639216, 0.372549, 0.419608)
+
+[connection signal="timeout" from="EvasionCooldown" to="." method="_evasion_cooldown"]
 [connection signal="timeout" from="SequenceCooldown" to="." method="_do_sequence"]

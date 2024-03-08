@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://h3i12e63gul"]
+
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="1_ol2wb"]
+[ext_resource type="Script" path="res://Player/PlayerBullet/player_bullet.gd" id="1_vg4ak"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_y8fo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_he74h"]
+radius = 19.105
+
+[node name="PlayerBullet" type="Node2D"]
+script = ExtResource("1_vg4ak")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_ol2wb")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_y8fo7")
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_he74h")

@@ -1,14 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://hylnr25f8v8n"]
+[gd_scene load_steps=19 format=3 uid="uid://hylnr25f8v8n"]
 
 [ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="2_stj0m"]
-[ext_resource type="Texture2D" uid="uid://ccay83kb64imt" path="res://Player/eye_b.png" id="2_ye4ly"]
-[ext_resource type="Script" path="res://Player/player.gd" id="3_3uvl8"]
 [ext_resource type="Texture2D" uid="uid://cetyw1tfdoh2e" path="res://test/test_bakcground.png" id="3_071tn"]
 [ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="4_300yu"]
 [ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="5_nxpov"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="5_rdoud"]
 [ext_resource type="Texture2D" uid="uid://boywpbjyypfgv" path="res://Player/white_circle2.png" id="7_4qmn8"]
-[ext_resource type="Texture2D" uid="uid://lnlagwxo0uny" path="res://Player/black_ring.png" id="8_dn62w"]
+[ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="8_qnbkq"]
 
 [sub_resource type="Gradient" id="Gradient_p41bo"]
 offsets = PackedFloat32Array(0)
@@ -64,7 +62,7 @@ position = Vector2(540, 65)
 position = Vector2(939, -42)
 
 [node name="Enemy12" parent="InvertedObjects" instance=ExtResource("4_300yu")]
-position = Vector2(987, 80)
+position = Vector2(250, 480)
 
 [node name="Enemy13" parent="InvertedObjects" instance=ExtResource("4_300yu")]
 position = Vector2(1448, 414)
@@ -83,14 +81,6 @@ position = Vector2(857, 864)
 
 [node name="Enemy18" parent="InvertedObjects" instance=ExtResource("4_300yu")]
 position = Vector2(167, 1206)
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("3_3uvl8")
-
-[node name="EyeTest" type="Sprite2D" parent="Node2D"]
-position = Vector2(960, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ye4ly")
 
 [node name="testbox-invert" type="Sprite2D" parent="."]
 visible = false
@@ -116,8 +106,12 @@ shape = SubResource("CircleShape2D_kiek3")
 position = Vector2(-9, 14)
 texture = ExtResource("5_nxpov")
 
+[node name="Player" parent="." instance=ExtResource("8_qnbkq")]
+position = Vector2(960, 541)
+
 [node name="InverterStuff" type="Node2D" parent="."]
 z_index = 1
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="InverterStuff"]
 visible = false
@@ -128,8 +122,10 @@ color = Color(1, 1, 1, 0)
 
 [node name="ColorRect2" type="ColorRect" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4pe2r")
-offset_right = 696.0
-offset_bottom = 145.0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 719.0
+offset_bottom = 151.0
 
 [node name="ColorRect5" type="ColorRect" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4pe2r")
@@ -157,13 +153,8 @@ rotation = -0.792927
 [node name="Sprite2D2" type="Sprite2D" parent="InverterStuff"]
 material = SubResource("ShaderMaterial_4jrr4")
 position = Vector2(960, 540)
-scale = Vector2(0.999995, 0.999995)
+scale = Vector2(0.559993, 0.559993)
 texture = ExtResource("7_4qmn8")
-
-[node name="BlackRing" type="Sprite2D" parent="InverterStuff"]
-position = Vector2(960, 540)
-scale = Vector2(0.52, 0.52)
-texture = ExtResource("8_dn62w")
 
 [node name="testbox2-black" type="Sprite2D" parent="."]
 visible = false

@@ -11,7 +11,7 @@ radius = 11.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ej64g"]
 radius = 13.0
 
-[node name="ColorInvertedBullet" type="Node2D"]
+[node name="ColorInvertedBullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_54ai0")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]

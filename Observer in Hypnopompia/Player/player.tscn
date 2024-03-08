@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://7jmsa1bknulo"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_cswf0"]
+[ext_resource type="Texture2D" uid="uid://ccay83kb64imt" path="res://Player/eye_b.png" id="1_pysw4"]
+[ext_resource type="Texture2D" uid="uid://cjhrwj0nenl4" path="res://Player/white_player_circle.png" id="2_rabm3"]
+[ext_resource type="Texture2D" uid="uid://dwrpct484l1bj" path="res://Player/eye_bump.png" id="4_0j7uv"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="4_3fu4w"]
+[ext_resource type="Script" path="res://Player/eyebump.gd" id="4_o3t1x"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="5_p6nb0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nss4w"]
+radius = 12.6491
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h46ub"]
+radius = 71.0634
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_glf8m"]
+radius = 65.521
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_cswf0")
+
+[node name="FirstSequence" type="Node2D" parent="."]
+
+[node name="EyeB" type="Sprite2D" parent="FirstSequence"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_pysw4")
+
+[node name="eyewall" type="StaticBody2D" parent="FirstSequence"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FirstSequence/eyewall"]
+position = Vector2(-2, -7)
+scale = Vector2(0.68, 0.68)
+build_mode = 1
+polygon = PackedVector2Array(-85, 1, -67, 24, -22, 42, 27, 36, 65, 22, 91, 6, 89, -8, 33, -27, -14, -33, -14, -28, 42, -20, 80.8824, -7.35294, 79.4118, 0, 77.9412, 2.94118, 58.8236, 16.1765, 26.4706, 29.4118, -17.6471, 33.8235, -41.1765, 27.9412, -60.2942, 19.1177, -81, 2, -14, -28, -15, -33)
+
+[node name="SecondSequence" type="Node2D" parent="."]
+visible = false
+
+[node name="General" type="Node2D" parent="."]
+
+[node name="eye" type="CharacterBody2D" parent="General"]
+position = Vector2(-4, -5)
+motion_mode = 1
+script = ExtResource("4_o3t1x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="General/eye"]
+shape = SubResource("CircleShape2D_nss4w")
+
+[node name="eyebumpsprite" type="Sprite2D" parent="General/eye"]
+self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
+position = Vector2(-1, 0)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("4_0j7uv")
+
+[node name="WhiteRing" type="Sprite2D" parent="General"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_rabm3")
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+script = ExtResource("4_3fu4w")
+hurt_from = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_h46ub")
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+script = ExtResource("5_p6nb0")
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_glf8m")

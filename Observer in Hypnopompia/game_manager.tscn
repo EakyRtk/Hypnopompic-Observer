@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1dmmacoex5dq"]
+
+[ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="1_0kmah"]
+[ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="1_qc7xa"]
+[ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_higsa"]
+[ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="2_kjtxs"]
+[ext_resource type="Script" path="res://Systems/camera.gd" id="4_3rcpt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeaky"]
+shader = ExtResource("1_0kmah")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4xjm"]
+shader = ExtResource("1_0kmah")
+
+[node name="GameManager" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="FirstSequence" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="InvertedEnemies" type="Node2D" parent="FirstSequence"]
+metadata/_edit_lock_ = true
+
+[node name="Enemy" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(68, 25)
+
+[node name="Enemy2" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(799, 161)
+
+[node name="Enemy3" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1619, 108)
+
+[node name="Enemy4" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1857, 468)
+
+[node name="Enemy5" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1166, 991)
+
+[node name="Enemy6" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(189, 991)
+
+[node name="Enemy7" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(58, 545)
+
+[node name="Enemy14" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1697, 889)
+
+[node name="Inverters" type="Node2D" parent="FirstSequence"]
+z_index = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="BigWhiteCircle" type="Sprite2D" parent="FirstSequence/Inverters"]
+material = SubResource("ShaderMaterial_jeaky")
+position = Vector2(960, 540)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_higsa")
+
+[node name="ColorRect" type="ColorRect" parent="FirstSequence/Inverters"]
+material = SubResource("ShaderMaterial_o4xjm")
+offset_left = 160.0
+offset_top = 120.0
+offset_right = 560.0
+offset_bottom = 900.0
+
+[node name="ColorRect2" type="ColorRect" parent="FirstSequence/Inverters"]
+material = SubResource("ShaderMaterial_o4xjm")
+offset_left = 1332.0
+offset_top = 689.0
+offset_right = 1732.0
+offset_bottom = 1469.0
+
+[node name="ColorRect3" type="ColorRect" parent="FirstSequence/Inverters"]
+material = SubResource("ShaderMaterial_o4xjm")
+offset_left = 1340.0
+offset_top = -488.0
+offset_right = 1740.0
+offset_bottom = 292.0
+
+[node name="DefaultEnemies" type="Node2D" parent="FirstSequence"]
+metadata/_edit_lock_ = true
+
+[node name="SecondSequence" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Outside" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
+position = Vector2(960, 540)
+camera = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="Outside"]
+position = Vector2(960, 540)
+script = ExtResource("4_3rcpt")
+rStrength = 35.0
+shakeFade = 10.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

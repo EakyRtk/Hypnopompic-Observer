@@ -16,7 +16,7 @@ func _ready():
 	parent = get_parent()
 	
 func _hurt(area: HitBox):
-	if detect_type == DetectType.TypEvade and parent.has_method("evade"):
+	if detect_type == DetectType.TypEvade and parent.has_method("evade") and area.type == hurt_from:
 		parent.evade()
 		return
 		
