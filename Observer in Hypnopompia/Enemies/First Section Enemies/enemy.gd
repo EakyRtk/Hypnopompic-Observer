@@ -13,6 +13,7 @@ const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn
 @onready var hit_box = $HitBox
 @onready var hurt_box = $HurtBox
 @onready var bullets = $Bullets
+@onready var ripparticle = $ripparticle
 @export var bullet_size := 3
 @export var speed := 60
 @export var rmove_range := 120
@@ -24,6 +25,7 @@ var center := Vector2(960, 540)
 var evasion := 0
 var can_move := true
 var no_sequence := false
+var can_shoot := true
 
 var random_move_tween
 var break_happened := false
@@ -68,6 +70,8 @@ func _random_move():
 	 position + Vector2(randi_range(-rmove_range, rmove_range), randi_range(-rmove_range, rmove_range)), randf_range(0.9, 2.1)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
 func _shoot():
+	if not can_shoot:
+		return
 	for i in range(3):
 		var bullet = S_BULLET.instantiate()
 		bullet.top_level = true
@@ -104,15 +108,20 @@ func evade():
 
 func hurt():
 	set_process(false)
+	no_sequence = true
+	can_move = false
+	can_shoot = false
 	hit_box.queue_free()
 	hurt_box.queue_free()
 	enemy_sprite.hide()
+	ripparticle.emitting = true
 	General.camera.apply_shake(10.0, 10.0)
 	Engine.time_scale = 0.4
 	await get_tree().create_timer(0.1).timeout
 	Engine.time_scale = 1
 	if bullets.get_children().size() != 0:
 		await get_tree().create_timer(8.0).timeout
+	await get_tree().create_timer(3).timeout
 	queue_free()
 	#print("enemy hurt")
 

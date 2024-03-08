@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c30k3tgjk8k65"]
+[gd_scene load_steps=12 format=3 uid="uid://c30k3tgjk8k65"]
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
@@ -17,6 +17,26 @@ point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8tbc"]
 radius = 151.083
+
+[sub_resource type="Gradient" id="Gradient_uor4j"]
+offsets = PackedFloat32Array(0, 0.713115, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2mink"]
+gradient = SubResource("Gradient_uor4j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vgarn"]
+particle_flag_disable_z = true
+angular_velocity_min = 145.62
+angular_velocity_max = 469.21
+radial_velocity_min = -89.89
+radial_velocity_max = 179.78
+gravity = Vector3(0, 0, 0)
+damping_min = 4.674
+damping_max = 70.523
+scale_min = 0.1
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_2mink")
 
 [node name="Enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_88fdb")
@@ -63,6 +83,15 @@ debug_color = Color(0, 0.639216, 0.372549, 0.419608)
 
 [node name="Bullets" type="Node2D" parent="."]
 process_mode = 3
+
+[node name="ripparticle" type="GPUParticles2D" parent="."]
+process_mode = 3
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_vgarn")
+texture = ExtResource("2_13wuu")
+lifetime = 0.3
+one_shot = true
 
 [connection signal="timeout" from="EvasionCooldown" to="." method="_evasion_cooldown"]
 [connection signal="timeout" from="SequenceCooldown" to="." method="_do_sequence"]
