@@ -17,6 +17,9 @@ func _input(event):
 		emit_signal("shake_camera")
 		for enemy in get_tree().get_nodes_in_group("enemy"):
 			enemy.do_break_effect()
+		for bullet in get_tree().get_nodes_in_group("bullet"):
+			bullet.queue_free()
+			
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:

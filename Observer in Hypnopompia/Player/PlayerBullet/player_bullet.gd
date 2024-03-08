@@ -9,3 +9,7 @@ func _process(delta):
 	if direction != null:
 		SPEED += ACC
 		position += direction * SPEED * delta
+
+
+func _on_screen_exited():
+	queue_free()

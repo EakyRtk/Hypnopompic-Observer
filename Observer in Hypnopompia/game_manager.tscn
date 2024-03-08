@@ -15,7 +15,7 @@ shader = ExtResource("1_0kmah")
 
 [sub_resource type="Animation" id="Animation_3tkir"]
 resource_name = "first_sequence"
-length = 2.0
+length = 10.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +23,7 @@ tracks/0/path = NodePath("../Summoner")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 1, 2),
+"times": PackedFloat32Array(0.5, 1, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [0, 0],
@@ -80,7 +80,22 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Enemy" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
-position = Vector2(68, 25)
+position = Vector2(673, 146)
+
+[node name="Enemy2" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1383, 35)
+
+[node name="Enemy3" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1726, 492)
+
+[node name="Enemy4" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(1457, 960)
+
+[node name="Enemy5" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(438, 970)
+
+[node name="Enemy6" parent="FirstSequence/InvertedEnemies" instance=ExtResource("2_kjtxs")]
+position = Vector2(266, 415)
 
 [node name="Inverters" type="Node2D" parent="FirstSequence"]
 z_index = 2
@@ -136,13 +151,13 @@ metadata/_edit_group_ = true
 
 [node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
 position = Vector2(960, 540)
-camera = NodePath("../Camera2D")
+camera = NodePath("../Camera")
 
-[node name="Camera2D" type="Camera2D" parent="Outside"]
+[node name="Camera" type="Camera2D" parent="Outside"]
+unique_name_in_owner = true
 position = Vector2(960, 540)
 script = ExtResource("4_3rcpt")
-rStrength = 35.0
-shakeFade = 10.0
+shakeFade = 6.0
 
 [node name="Summoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer", "second_sequence_layer")]
 script = ExtResource("6_t1sbh")
@@ -154,15 +169,30 @@ second_sequence_layer = NodePath("../SecondSequence/Enemies")
 position = Vector2(802, 1008)
 
 [node name="Marker2D2" type="Marker2D" parent="Summoner"]
-position = Vector2(68, 238)
+position = Vector2(1017, 100)
 
 [node name="Marker2D3" type="Marker2D" parent="Summoner"]
-position = Vector2(19, 449)
+position = Vector2(1664, 351)
 
 [node name="Marker2D4" type="Marker2D" parent="Summoner"]
-position = Vector2(76, 691)
+position = Vector2(130, 822)
 
 [node name="Marker2D5" type="Marker2D" parent="Summoner"]
-position = Vector2(79, 940)
+position = Vector2(991, 1001)
+
+[node name="Marker2D6" type="Marker2D" parent="Summoner"]
+position = Vector2(665, 877)
+
+[node name="Marker2D7" type="Marker2D" parent="Summoner"]
+position = Vector2(110, 534)
+
+[node name="Marker2D8" type="Marker2D" parent="Summoner"]
+position = Vector2(265, 107)
+
+[node name="Marker2D9" type="Marker2D" parent="Summoner"]
+position = Vector2(1557, 147)
+
+[node name="Marker2D10" type="Marker2D" parent="Summoner"]
+position = Vector2(1766, 726)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

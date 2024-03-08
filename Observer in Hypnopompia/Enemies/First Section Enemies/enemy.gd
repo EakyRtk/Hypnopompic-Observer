@@ -10,7 +10,9 @@ const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn
 @onready var sequence_cooldown = $SequenceCooldown
 @onready var evasion_cooldown = $EvasionCooldown
 @onready var breakline = $breakline
-
+@onready var hit_box = $HitBox
+@onready var hurt_box = $HurtBox
+@onready var bullets = $Bullets
 @export var bullet_size := 3
 @export var speed := 60
 @export var rmove_range := 120
@@ -101,9 +103,16 @@ func evade():
 	evasion_cooldown.start()
 
 func hurt():
-	#TODO: add stuff before enemy dies
+	set_process(false)
+	hit_box.queue_free()
+	hurt_box.queue_free()
 	enemy_sprite.hide()
-
+	General.camera.apply_shake(10.0, 10.0)
+	Engine.time_scale = 0.4
+	await get_tree().create_timer(0.1).timeout
+	Engine.time_scale = 1
+	if bullets.get_children().size() != 0:
+		await get_tree().create_timer(8.0).timeout
 	queue_free()
 	#print("enemy hurt")
 
