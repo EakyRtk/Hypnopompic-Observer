@@ -1,6 +1,6 @@
 class_name HitBox extends Area2D
 
-@export_enum("Enemy","Player") var type = 0
+@export_enum("Enemy","Player", "Area", "OneShot") var type = 0
 
 func _init():
 	monitoring = false

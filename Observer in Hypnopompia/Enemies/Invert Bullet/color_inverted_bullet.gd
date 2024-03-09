@@ -1,10 +1,14 @@
 extends Node2D
 
-@export var bullet_speed := 190
+@export var bullet_speed := 240
 
 func _process(delta):
-	position += position.direction_to(Vector2(960, 540)) * delta * bullet_speed
+	position += position.direction_to(General.player.global_position) * delta * bullet_speed
 
 func hurt():
 	#TODO: add stuff before deletion from the scene
+	queue_free()
+
+
+func _on_screen_exited():
 	queue_free()

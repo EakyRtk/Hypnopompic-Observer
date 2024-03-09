@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://de6d18p6pwdmx"]
+
+[ext_resource type="Texture2D" uid="uid://dmqwujc1bcx7x" path="res://Enemies/AttackAreas/horizontal_attack_placeholder.png" id="1_4mtbm"]
+[ext_resource type="Script" path="res://Enemies/AttackAreas/general_area_attack.gd" id="1_wkxak"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_wny78"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7mji"]
+size = Vector2(304, 1072)
+
+[node name="HorizontalAttack" type="Node2D"]
+script = ExtResource("1_wkxak")
+
+[node name="HorizontalAttackPlaceholder" type="Sprite2D" parent="."]
+texture = ExtResource("1_4mtbm")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_wny78")
+type = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_w7mji")

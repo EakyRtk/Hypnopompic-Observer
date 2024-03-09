@@ -12,7 +12,6 @@ const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn
 @onready var breakline = $breakline
 @onready var hit_box = $HitBox
 @onready var hurt_box = $HurtBox
-@onready var bullets = $Bullets
 @onready var ripparticle = $ripparticle
 @export var bullet_size := 3
 @export var speed := 60
@@ -52,15 +51,19 @@ func _do_sequence():
 	_random_move()
 	_shoot()
 	await get_tree().create_timer(randf_range(2, 2.8)).timeout
+	if no_sequence:
+		return
 	can_move = true
 	await get_tree().create_timer(randf_range(2, 2.8)).timeout
+	if no_sequence:
+		return
 	can_move = false
 	sequence_cooldown.start()
 
 func _move(delta):
 	if not can_move or no_sequence:
 		return
-	position += position.direction_to(center) * delta * speed
+	position += position.direction_to(General.player.global_position) * delta * speed
 	
 func _random_move():
 	if no_sequence or not can_move:
@@ -76,7 +79,7 @@ func _shoot():
 		var bullet = S_BULLET.instantiate()
 		bullet.top_level = true
 		bullet.position = position
-		add_child(bullet)
+		get_parent().add_child(bullet)
 		await get_tree().create_timer(randf_range(1, 1.7)).timeout
 
 	
@@ -84,6 +87,7 @@ func _shoot():
 func do_break_effect():
 	if random_move_tween != null:
 		random_move_tween.kill()
+	center = General.player.global_position
 	can_move = false
 	no_sequence = true
 	breakline.add_point(Vector2.ZERO)
@@ -96,7 +100,17 @@ func do_break_effect():
 	breakline.add_point(breaking_point + Vector2(randi_range(-f,f), randi_range(-f,f)), 1)
 	breakline.add_point(breaking_point2 - Vector2(randi_range(-f,f), randi_range(-f,f)), 1)
 	
-
+	await get_tree().create_timer(0.62).timeout
+	
+	for points in breakline.get_point_count():
+		ripparticle.position = breakline.get_point_position(breakline.get_point_count()-1)
+		ripparticle.emitting = true
+		await get_tree().create_timer(0.02).timeout
+		breakline.remove_point(breakline.get_point_count()-1)
+		#breakline.remove_point(0)
+	breakline.visible = false
+	General.camera.apply_shake(10.0)
+	hurt()
 func evade():
 	if no_sequence:
 		return
@@ -119,9 +133,6 @@ func hurt():
 	Engine.time_scale = 0.4
 	await get_tree().create_timer(0.1).timeout
 	Engine.time_scale = 1
-	if bullets.get_children().size() != 0:
-		await get_tree().create_timer(8.0).timeout
-	await get_tree().create_timer(3).timeout
 	queue_free()
 	#print("enemy hurt")
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1dmmacoex5dq"]
+[gd_scene load_steps=14 format=3 uid="uid://b1dmmacoex5dq"]
 
 [ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="1_0kmah"]
+[ext_resource type="PackedScene" uid="uid://bpij8mrsuexhu" path="res://Enemies/AttackAreas/vertical_attack.tscn" id="1_gwnex"]
 [ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="1_qc7xa"]
+[ext_resource type="PackedScene" uid="uid://de6d18p6pwdmx" path="res://Enemies/AttackAreas/horizontal_attack.tscn" id="2_d5jud"]
 [ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_higsa"]
 [ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="2_kjtxs"]
 [ext_resource type="Script" path="res://Systems/camera.gd" id="4_3rcpt"]
@@ -12,6 +14,21 @@ shader = ExtResource("1_0kmah")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o4xjm"]
 shader = ExtResource("1_0kmah")
+
+[sub_resource type="Animation" id="Animation_j2qs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Summoner/Marker2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(802, 1008)]
+}
 
 [sub_resource type="Animation" id="Animation_3tkir"]
 resource_name = "first_sequence"
@@ -49,21 +66,6 @@ tracks/1/keys = {
 "values": [Vector2(802, 1008), Vector2(1665, 1012)]
 }
 
-[sub_resource type="Animation" id="Animation_j2qs7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Summoner/Marker2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(802, 1008)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvh88"]
 _data = {
 "RESET": SubResource("Animation_j2qs7"),
@@ -71,6 +73,25 @@ _data = {
 }
 
 [node name="GameManager" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="SecondSequence" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="SecondSequence"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="SecondSequence/ParallaxBackground"]
+
+[node name="AttackAreas" type="Node2D" parent="SecondSequence"]
+
+[node name="VerticalAttack" parent="SecondSequence/AttackAreas" instance=ExtResource("1_gwnex")]
+position = Vector2(-1031, 190)
+type = 1
+
+[node name="HorizontalAttack" parent="SecondSequence/AttackAreas" instance=ExtResource("2_d5jud")]
+position = Vector2(-383, 981)
+
+[node name="Enemies" type="Node2D" parent="SecondSequence"]
 metadata/_edit_lock_ = true
 
 [node name="FirstSequence" type="Node2D" parent="."]
@@ -139,18 +160,13 @@ libraries = {
 }
 autoplay = "first_sequence"
 
-[node name="SecondSequence" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="Enemies" type="Node2D" parent="SecondSequence"]
-metadata/_edit_lock_ = true
-
 [node name="Outside" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
 position = Vector2(960, 540)
+player_sequence = 1
 camera = NodePath("../Camera")
 
 [node name="Camera" type="Camera2D" parent="Outside"]
@@ -160,6 +176,7 @@ script = ExtResource("4_3rcpt")
 shakeFade = 6.0
 
 [node name="Summoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer", "second_sequence_layer")]
+visible = false
 script = ExtResource("6_t1sbh")
 inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
 default_layer = NodePath("../FirstSequence/DefaultEnemies")
