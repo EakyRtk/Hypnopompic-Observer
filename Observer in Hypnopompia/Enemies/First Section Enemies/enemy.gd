@@ -43,7 +43,7 @@ func _process(delta):
 	_move(delta)
 
 #TODO: enemies will follow same sequence and fire a timer signal to redo it again
-func _do_sequence():
+func _do_sequence() -> void:
 	if no_sequence:
 		return
 	
@@ -65,14 +65,14 @@ func _move(delta):
 		return
 	position += position.direction_to(General.player.global_position) * delta * speed
 	
-func _random_move():
+func _random_move() -> void:
 	if no_sequence or not can_move:
 		return
 	random_move_tween = create_tween()
 	random_move_tween.tween_property(self, "position",
 	 position + Vector2(randi_range(-rmove_range, rmove_range), randi_range(-rmove_range, rmove_range)), randf_range(0.9, 2.1)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
-func _shoot():
+func _shoot() -> void:
 	if not can_shoot:
 		return
 	for i in range(3):
@@ -84,7 +84,7 @@ func _shoot():
 
 	
 
-func do_break_effect():
+func do_break_effect() -> void:
 	if random_move_tween != null:
 		random_move_tween.kill()
 	center = General.player.global_position
@@ -111,7 +111,8 @@ func do_break_effect():
 	breakline.visible = false
 	General.camera.apply_shake(10.0)
 	hurt()
-func evade():
+	
+func evade() -> void:
 	if no_sequence:
 		return
 	#print("evade")
@@ -120,7 +121,7 @@ func evade():
 	 position + Vector2(randi_range(-rmove_range*1.2, rmove_range*1.2), randi_range(-rmove_range*1.2, rmove_range*1.2)), randf_range(0.5, 1.0)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	evasion_cooldown.start()
 
-func hurt():
+func hurt() -> void:
 	set_process(false)
 	no_sequence = true
 	can_move = false
@@ -137,6 +138,6 @@ func hurt():
 	#print("enemy hurt")
 
 
-func _evasion_cooldown():
+func _evasion_cooldown() -> void:
 	if evasion + 1 < max_evasion:
 		evasion += 1

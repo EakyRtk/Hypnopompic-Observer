@@ -60,7 +60,7 @@ func _input(event):
 				n_bullet.direction = global_position.direction_to(get_global_mouse_position())
 				add_child(n_bullet)
 #will only work in second part
-func _movement():
+func _movement() -> void:
 	if not player_sequence == sequence_at.second:
 		return
 	
@@ -89,7 +89,7 @@ func _process(_delta):
 	dashrecover.value = dash_recover_timer.time_left
 	health_bar.value = health
 			
-func hurt(areaType : hurted_type):
+func hurt(areaType : hurted_type) -> void:
 	match areaType:
 		hurted_type.Enemy:
 			health -= 5
@@ -106,7 +106,7 @@ func hurt(areaType : hurted_type):
 
 
 
-func _on_dash_cooldown_timeout():
+func _on_dash_cooldown_timeout() -> void:
 	dashnshield.visible = false
 	dashnshield.value = dash_cooldown
 	hitcollision.shape.set_deferred("radius", 66)
@@ -115,11 +115,11 @@ func _on_dash_cooldown_timeout():
 	
 
 
-func _on_dash_recover_timeout():
+func _on_dash_recover_timeout() -> void:
 	dashrecover.value = 0
 	dashnshielding = false
 
 
-func _on_health_regen():
+func _on_health_regen() -> void:
 	if health <= 100 - health_regen_amount:
 		health += health_regen_amount

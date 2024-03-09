@@ -6,6 +6,6 @@ extends Node2D
 func _ready():
 	hit_box.type += type
 	
-func change_type(new_type):
+func change_type(new_type) -> void:
 	type = new_type
 	hit_box.type = type
