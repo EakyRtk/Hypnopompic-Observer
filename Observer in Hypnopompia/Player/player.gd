@@ -34,6 +34,7 @@ var looking_direction := Vector2(1, 0)
 var health := 100
 var health_regen_amount := 3
 
+var can_move := false
 var dashnshielding := false
 
 func _ready():
@@ -46,9 +47,19 @@ func _ready():
 	shake_camera.connect(camera.apply_shake)
 	if player_sequence == sequence_at.second:
 		health_regen_timer.start(5)
-		
+
+func _physics_process(_delta):
+	_movement()
+
+func _process(_delta):
+	dashnshield.value = dash_cooldown_timer.time_left
+	dashrecover.value = dash_recover_timer.time_left
+	health_bar.value = health
+	if Input.get_connected_joypads() > [0]:
+		direction_line.set_point_position(1, looking_direction.normalized() * 100)
+
+#INFO: its hell down there	
 func _input(event):
-	#TODO: change it happen only after the second stage
 	looking_direction = looking_direction.lerp(Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)), 0.1) 
 	if event.is_action_pressed("breakskill"):
 		emit_signal("shake_camera")
@@ -75,6 +86,7 @@ func _input(event):
 		n_bullet.global_position = global_position
 		n_bullet.direction = looking_direction.normalized()
 		add_child(n_bullet)
+		
 #will only work in second part
 func _movement() -> void:
 	if not player_sequence == sequence_at.second:
@@ -96,16 +108,6 @@ func _hitbox_expansion() -> void:
 	speed = 770
 	hitcollision.shape.set_deferred("radius", 123)
 	dash_cooldown_timer.start(dash_cooldown)
-
-func _physics_process(_delta):
-	_movement()
-
-func _process(_delta):
-	dashnshield.value = dash_cooldown_timer.time_left
-	dashrecover.value = dash_recover_timer.time_left
-	health_bar.value = health
-	if Input.get_connected_joypads() > [0]:
-		direction_line.set_point_position(1, looking_direction.normalized() * 100)
 	
 func hurt(areaType : hurted_type) -> void:
 	match areaType:
@@ -119,24 +121,29 @@ func hurt(areaType : hurted_type) -> void:
 		hurted_type.Area:
 			#TODO: call visual effect
 			General.temp_hit_score += 1
+			
 		hurted_type.OneShot:
-			print("one shotted")
+			_die()
 			General.temp_hit_score = 0
+			return
 	
 	if player_sequence == sequence_at.second and health <= 0:
 		General.temp_hit_score = 0
 		_die()
 
-func full_stop() -> void:
-	set_process(false)
-	set_process_input(false)
-	set_physics_process(false)
-
 func _die() -> void:
-	full_stop()
+	switch_process_state(false)
 	visible = false
 	emit_signal("stop_sequence")
 
+func _on_health_regen() -> void:
+	if health <= 100 - health_regen_amount:
+		health += health_regen_amount
+
+func switch_process_state(state: bool) -> void:
+	set_process(state)
+	set_process_input(state)
+	set_physics_process(state)
 
 func _on_dash_cooldown_timeout() -> void:
 	dashnshield.visible = false
@@ -145,13 +152,13 @@ func _on_dash_cooldown_timeout() -> void:
 	speed = 600
 	dash_recover_timer.start(dash_cooldown)
 	
+func change_sequence() -> void:
+	player_sequence = sequence_at.second
 
+func can_i_move(answer: bool) -> void:
+	can_move = answer
 
 func _on_dash_recover_timeout() -> void:
 	dashrecover.value = 0
 	dashnshielding = false
 
-
-func _on_health_regen() -> void:
-	if health <= 100 - health_regen_amount:
-		health += health_regen_amount
