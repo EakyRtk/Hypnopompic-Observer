@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7jmsa1bknulo"]
+[gd_scene load_steps=15 format=3 uid="uid://7jmsa1bknulo"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_cswf0"]
 [ext_resource type="Texture2D" uid="uid://ccay83kb64imt" path="res://Player/eye_b.png" id="1_pysw4"]
@@ -12,6 +12,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ng6"]
 radius = 73.0616
+
+[sub_resource type="Curve" id="Curve_kend4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.296703), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nss4w"]
 radius = 12.6491
@@ -29,6 +33,13 @@ script = ExtResource("1_cswf0")
 visible = false
 shape = SubResource("CircleShape2D_37ng6")
 debug_color = Color(0.556863, 0.529412, 0.513726, 0.419608)
+
+[node name="Direction" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 88, 0)
+width_curve = SubResource("Curve_kend4")
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="SecondSequence" type="Node2D" parent="."]
 

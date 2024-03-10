@@ -118,7 +118,7 @@ func evade() -> void:
 	#print("evade")
 	random_move_tween = create_tween()
 	random_move_tween.tween_property(self, "position",
-	 position + Vector2(randi_range(-rmove_range*1.2, rmove_range*1.2), randi_range(-rmove_range*1.2, rmove_range*1.2)), randf_range(0.5, 1.0)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	 position + Vector2(randf_range(-rmove_range*1.2, rmove_range*1.2), randf_range(-rmove_range*1.2, rmove_range*1.2)), randf_range(0.5, 1.0)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	evasion_cooldown.start()
 
 func hurt() -> void:

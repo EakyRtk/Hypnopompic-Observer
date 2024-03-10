@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
 signal shake_camera
+signal stop_sequence
 
 const PLAYER_BULLET = preload("res://Player/PlayerBullet/player_bullet.tscn")
 
 enum sequence_at {first, second, final}
 enum hurted_type {Enemy, Player, Area, OneShot}
+
+@onready var direction_line = $Direction
 
 @onready var dash_cooldown_timer = $FirstSequence/DashCooldown
 @onready var dash_recover_timer = $FirstSequence/DashRecover
@@ -23,6 +26,11 @@ enum hurted_type {Enemy, Player, Area, OneShot}
 
 var speed = 700
 
+#INFO: for controller
+var looking_direction := Vector2(1, 0)
+
+
+@export var can_take_damage := false
 var health := 100
 var health_regen_amount := 3
 
@@ -41,7 +49,8 @@ func _ready():
 		
 func _input(event):
 	#TODO: change it happen only after the second stage
-	if event.is_action_pressed("ui_accept"):
+	looking_direction = looking_direction.lerp(Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)), 0.1) 
+	if event.is_action_pressed("breakskill"):
 		emit_signal("shake_camera")
 		for enemy in get_tree().get_nodes_in_group("enemy"):
 			enemy.do_break_effect()
@@ -59,6 +68,13 @@ func _input(event):
 				n_bullet.global_position = global_position
 				n_bullet.direction = global_position.direction_to(get_global_mouse_position())
 				add_child(n_bullet)
+				
+	if event.is_action_pressed("shoot"):
+		var n_bullet = PLAYER_BULLET.instantiate()
+		n_bullet.top_level = true
+		n_bullet.global_position = global_position
+		n_bullet.direction = looking_direction.normalized()
+		add_child(n_bullet)
 #will only work in second part
 func _movement() -> void:
 	if not player_sequence == sequence_at.second:
@@ -88,22 +104,38 @@ func _process(_delta):
 	dashnshield.value = dash_cooldown_timer.time_left
 	dashrecover.value = dash_recover_timer.time_left
 	health_bar.value = health
-			
+	if Input.get_connected_joypads() > [0]:
+		direction_line.set_point_position(1, looking_direction.normalized() * 100)
+	
 func hurt(areaType : hurted_type) -> void:
 	match areaType:
 		hurted_type.Enemy:
+			#TODO: call visual effect
+			if not can_take_damage:
+				return
 			health -= 5
 			health_bar.value = health
-			pass
+			General.temp_hit_score += 1
 		hurted_type.Area:
-			print("took area damage")
-			pass
+			#TODO: call visual effect
+			General.temp_hit_score += 1
 		hurted_type.OneShot:
 			print("one shotted")
-			pass
-	#TODO: implement whats gonna happen in s_1 and s_2 
-	pass
+			General.temp_hit_score = 0
+	
+	if player_sequence == sequence_at.second and health <= 0:
+		General.temp_hit_score = 0
+		_die()
 
+func full_stop() -> void:
+	set_process(false)
+	set_process_input(false)
+	set_physics_process(false)
+
+func _die() -> void:
+	full_stop()
+	visible = false
+	emit_signal("stop_sequence")
 
 
 func _on_dash_cooldown_timeout() -> void:

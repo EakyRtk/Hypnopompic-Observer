@@ -5,6 +5,8 @@ const ACC := 20
 
 var direction : Vector2
 
+
+
 func _process(delta):
 	if direction != null:
 		SPEED += ACC
