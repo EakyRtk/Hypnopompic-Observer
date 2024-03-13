@@ -29,3 +29,4 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_fafo3")
+disabled = true

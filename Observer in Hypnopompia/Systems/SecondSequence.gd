@@ -39,6 +39,6 @@ func print_state() -> void:
 	print(str(General.checkpoint))
 	print(second_sequence_anim.get_queue())
 
-func _on_second_sequence_player_animation_changed(old_name, new_name):
+func _on_second_sequence_player_animation_changed(_old_name, _new_name):
 	print_state()
 	update_call()

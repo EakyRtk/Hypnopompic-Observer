@@ -32,5 +32,5 @@ func _hurt(area: HitBox):
 		if parent.is_in_group("player"):
 			parent.hurt(area.type)
 			return
-		parent.hurt()
+		
 	

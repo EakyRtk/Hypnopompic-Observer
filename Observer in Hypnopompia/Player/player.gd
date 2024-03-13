@@ -18,11 +18,13 @@ enum hurted_type {Enemy, Player, Area, OneShot}
 @onready var health_bar = $SecondSequence/HealthBar
 @onready var dashnshield = $SecondSequence/Dashnshield
 @onready var dashrecover = $SecondSequence/Dashrecover
+@onready var break_cooldown = $BreakCooldown
 
 @onready var hitcollision = $HitBox/CollisionShape2D
 @export var player_sequence : sequence_at = sequence_at.first
 @export var camera : Camera2D
 @export var dash_cooldown := 5.5
+@export var br_cooldown := 25.0
 
 var speed = 700
 
@@ -34,8 +36,10 @@ var looking_direction := Vector2(1, 0)
 var health := 100
 var health_regen_amount := 3
 
-var can_move := false
+@export var can_move := false
 var dashnshielding := false
+@export var can_break := false
+@export var can_shoot := false
 
 func _ready():
 	dashnshield.max_value = dash_cooldown
@@ -56,22 +60,28 @@ func _process(_delta):
 	dashrecover.value = dash_recover_timer.time_left
 	health_bar.value = health
 	if Input.get_connected_joypads() > [0]:
+		direction_line.visible = true
 		direction_line.set_point_position(1, looking_direction.normalized() * 100)
 
 #INFO: its hell down there	
 func _input(event):
 	looking_direction = looking_direction.lerp(Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)), 0.1) 
-	if event.is_action_pressed("breakskill"):
+	if can_break and event.is_action_pressed("breakskill"):
+		can_move = false
 		emit_signal("shake_camera")
+		can_break = false
+		break_cooldown.start(br_cooldown)
 		for enemy in get_tree().get_nodes_in_group("enemy"):
-			enemy.do_break_effect()
+			await get_tree().create_timer(0.03).timeout
+			if enemy != null:
+				enemy.do_break_effect()
 		for bullet in get_tree().get_nodes_in_group("bullet"):
 			bullet.queue_free()
-	
+		can_move = true
 	if event.is_action_pressed("dashnshield"):
 		_hitbox_expansion()
 		
-	if event is InputEventMouseButton:
+	if can_shoot and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				var n_bullet = PLAYER_BULLET.instantiate()
@@ -89,9 +99,8 @@ func _input(event):
 		
 #will only work in second part
 func _movement() -> void:
-	if not player_sequence == sequence_at.second:
+	if not can_move or not player_sequence == sequence_at.second:
 		return
-	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction == Vector2.ZERO and velocity != Vector2.ZERO:
 		velocity = velocity.lerp(Vector2.ZERO, 0.2)
@@ -113,11 +122,12 @@ func hurt(areaType : hurted_type) -> void:
 	match areaType:
 		hurted_type.Enemy:
 			#TODO: call visual effect
+			General.temp_hit_score += 1
+			General.camera.apply_shake(10.0, 10.0)
 			if not can_take_damage:
 				return
 			health -= 5
 			health_bar.value = health
-			General.temp_hit_score += 1
 		hurted_type.Area:
 			#TODO: call visual effect
 			General.temp_hit_score += 1
@@ -158,7 +168,12 @@ func change_sequence() -> void:
 func can_i_move(answer: bool) -> void:
 	can_move = answer
 
+func change_break(can_i_break_now: bool) -> void:
+	can_break = can_i_break_now
+
 func _on_dash_recover_timeout() -> void:
 	dashrecover.value = 0
 	dashnshielding = false
 
+func _on_break_cooldown_timeout():
+	can_break = true

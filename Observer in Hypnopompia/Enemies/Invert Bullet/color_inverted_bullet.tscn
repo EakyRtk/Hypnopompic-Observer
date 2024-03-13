@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://byuqrwqmhr183"]
+[gd_scene load_steps=9 format=3 uid="uid://byuqrwqmhr183"]
 
 [ext_resource type="Script" path="res://Enemies/Invert Bullet/color_inverted_bullet.gd" id="1_54ai0"]
 [ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="1_aim3y"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_05qtv"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="3_uun7h"]
+[ext_resource type="Script" path="res://Systems/trail.gd" id="5_vxtn7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xhp"]
 radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ej64g"]
 radius = 13.0
+
+[sub_resource type="Curve" id="Curve_efche"]
+_data = [Vector2(0.00526316, 0), 0.0, 0.160609, 0, 0, Vector2(1, 1), 1.85592, 0.0, 0, 0]
+point_count = 2
 
 [node name="ColorInvertedBullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_54ai0")
@@ -19,6 +24,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_aim3y")
 
 [node name="HitBox" type="Area2D" parent="."]
+visible = false
 script = ExtResource("2_05qtv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -26,6 +32,7 @@ shape = SubResource("CircleShape2D_55xhp")
 debug_color = Color(0.882353, 0, 0.25098, 0.588235)
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 script = ExtResource("3_uun7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -33,5 +40,11 @@ shape = SubResource("CircleShape2D_ej64g")
 debug_color = Color(0.772549, 0.443137, 0, 0.419608)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+
+[node name="Trails" type="Line2D" parent="."]
+width_curve = SubResource("Curve_efche")
+script = ExtResource("5_vxtn7")
+MAX_POINTS = 10
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

@@ -7,6 +7,7 @@ static var max_evasion := 2
 const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn")
 
 @onready var enemy_sprite = $EnemySprite
+
 @onready var sequence_cooldown = $SequenceCooldown
 @onready var evasion_cooldown = $EvasionCooldown
 @onready var breakline = $breakline
@@ -25,6 +26,7 @@ var evasion := 0
 var can_move := true
 var no_sequence := false
 var can_shoot := true
+var ded_initiated := false
 
 var random_move_tween
 var break_happened := false
@@ -39,7 +41,7 @@ func _ready():
 
 func _process(delta):
 	if break_happened:
-		breakline.set_point_position(0, center - global_position) 
+		breakline.set_point_position(0, General.player.global_position - global_position) 
 	_move(delta)
 
 #TODO: enemies will follow same sequence and fire a timer signal to redo it again
@@ -121,7 +123,15 @@ func evade() -> void:
 	 position + Vector2(randf_range(-rmove_range*1.2, rmove_range*1.2), randf_range(-rmove_range*1.2, rmove_range*1.2)), randf_range(0.5, 1.0)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	evasion_cooldown.start()
 
+func freeze()->void:
+	can_move = false
+	can_shoot = false
+	no_sequence = true
+
 func hurt() -> void:
+	if ded_initiated:
+		return
+	ded_initiated = true
 	set_process(false)
 	no_sequence = true
 	can_move = false
@@ -129,8 +139,8 @@ func hurt() -> void:
 	hit_box.queue_free()
 	hurt_box.queue_free()
 	enemy_sprite.hide()
-	ripparticle.emitting = true
 	General.camera.apply_shake(10.0, 10.0)
+	ripparticle.emitting = true
 	Engine.time_scale = 0.4
 	await get_tree().create_timer(0.1).timeout
 	Engine.time_scale = 1
@@ -141,3 +151,9 @@ func hurt() -> void:
 func _evasion_cooldown() -> void:
 	if evasion + 1 < max_evasion:
 		evasion += 1
+
+
+func _on_screen_exited():
+	if ded_initiated:
+		return
+	queue_free()

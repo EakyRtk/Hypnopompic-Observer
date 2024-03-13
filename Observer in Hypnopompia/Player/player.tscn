@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://7jmsa1bknulo"]
+[gd_scene load_steps=16 format=3 uid="uid://7jmsa1bknulo"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_cswf0"]
 [ext_resource type="Texture2D" uid="uid://ccay83kb64imt" path="res://Player/eye_b.png" id="1_pysw4"]
+[ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_7scu6"]
 [ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="2_fp2gn"]
 [ext_resource type="Texture2D" uid="uid://c8nm26mkv02cp" path="res://Player/dashnshield.png" id="2_qnivq"]
 [ext_resource type="Texture2D" uid="uid://cjhrwj0nenl4" path="res://Player/white_player_circle.png" id="2_rabm3"]
@@ -29,21 +30,10 @@ radius = 66.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_cswf0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_37ng6")
-debug_color = Color(0.556863, 0.529412, 0.513726, 0.419608)
-
-[node name="Direction" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 88, 0)
-width_curve = SubResource("Curve_kend4")
-joint_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
 [node name="SecondSequence" type="Node2D" parent="."]
 
 [node name="Dashrecover" type="TextureProgressBar" parent="SecondSequence"]
+visible = false
 modulate = Color(0.627451, 0.388235, 0.215686, 0.345098)
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,6 +73,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("2_qnivq")
 
 [node name="HealthBar" type="TextureProgressBar" parent="SecondSequence"]
+visible = false
 modulate = Color(0.188235, 0.196078, 0.121569, 1)
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,9 +94,27 @@ texture_progress = ExtResource("2_fp2gn")
 [node name="HealthRegen" type="Timer" parent="SecondSequence"]
 wait_time = 5.0
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.160002, 0.160002)
+texture = ExtResource("2_7scu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_37ng6")
+debug_color = Color(0.556863, 0.529412, 0.513726, 0.419608)
+
+[node name="Direction" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 88, 0)
+width_curve = SubResource("Curve_kend4")
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="General" type="Node2D" parent="."]
 
 [node name="eye" type="CharacterBody2D" parent="General"]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
 position = Vector2(-4, -5)
 collision_layer = 2
 collision_mask = 2
@@ -123,6 +132,7 @@ scale = Vector2(0.42, 0.42)
 texture = ExtResource("4_0j7uv")
 
 [node name="WhiteRing" type="Sprite2D" parent="General"]
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_rabm3")
 
@@ -139,6 +149,7 @@ polygon = PackedVector2Array(-92.647, -8.82353, -97.0588, 8.82353, -86.7647, 33.
 [node name="FirstSequence" type="Node2D" parent="."]
 
 [node name="EyeB" type="Sprite2D" parent="FirstSequence"]
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_pysw4")
 
@@ -164,6 +175,10 @@ type = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_glf8m")
 
+[node name="BreakCooldown" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="SecondSequence/HealthRegen" to="." method="_on_health_regen"]
 [connection signal="timeout" from="FirstSequence/DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="FirstSequence/DashRecover" to="." method="_on_dash_recover_timeout"]
+[connection signal="timeout" from="BreakCooldown" to="." method="_on_break_cooldown_timeout"]

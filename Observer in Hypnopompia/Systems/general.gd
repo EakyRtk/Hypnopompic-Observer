@@ -1,6 +1,6 @@
 extends Node
 
-var camera : Camera2D
+var camera 
 var player : CharacterBody2D
 var checkpoint := 0
 var hit_score := 0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmupwqequygb5"
+path="res://.godot/imported/24940__vexst__the-winstons-amen-brother-full-solo-4-bars.wav-4a33fed844d623f6abdf6dcef8707fd5.sample"
+
+[deps]
+
+source_file="res://First Section/24940__vexst__the-winstons-amen-brother-full-solo-4-bars.wav"
+dest_files=["res://.godot/imported/24940__vexst__the-winstons-amen-brother-full-solo-4-bars.wav-4a33fed844d623f6abdf6dcef8707fd5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

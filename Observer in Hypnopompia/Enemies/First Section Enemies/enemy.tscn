@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c30k3tgjk8k65"]
+[gd_scene load_steps=14 format=3 uid="uid://c30k3tgjk8k65"]
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
 [ext_resource type="Texture2D" uid="uid://dc3i0dgjb4fs4" path="res://Enemies/white_box.png" id="2_13wuu"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="4_h6pde"]
+[ext_resource type="Script" path="res://Systems/trail.gd" id="5_jp6an"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cokcj"]
 size = Vector2(54, 54)
@@ -38,9 +39,19 @@ scale_min = 0.1
 scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_2mink")
 
+[sub_resource type="Curve" id="Curve_tgy05"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.468421, 0.978022), 0.0, 0.0, 0, 0, Vector2(0.8, 0.208791), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="Enemy" type="Node2D" groups=["enemy"]]
+z_index = -1
 script = ExtResource("1_88fdb")
 bullet_size = 2
+
+[node name="EnemySprite2" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.239999, 0.239999)
+texture = ExtResource("2_13wuu")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -93,5 +104,13 @@ texture = ExtResource("2_13wuu")
 lifetime = 0.3
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Trails" type="Line2D" parent="."]
+width_curve = SubResource("Curve_tgy05")
+script = ExtResource("5_jp6an")
+MAX_POINTS = 35
+
 [connection signal="timeout" from="EvasionCooldown" to="." method="_evasion_cooldown"]
 [connection signal="timeout" from="SequenceCooldown" to="." method="_do_sequence"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
