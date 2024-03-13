@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://c30k3tgjk8k65"]
+[gd_scene load_steps=17 format=3 uid="uid://c30k3tgjk8k65"]
 
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HurtBox.gd" id="1_4ijcw"]
 [ext_resource type="Script" path="res://Enemies/First Section Enemies/enemy.gd" id="1_88fdb"]
 [ext_resource type="Texture2D" uid="uid://dc3i0dgjb4fs4" path="res://Enemies/white_box.png" id="2_13wuu"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="4_h6pde"]
 [ext_resource type="Script" path="res://Systems/trail.gd" id="5_jp6an"]
+[ext_resource type="AudioStream" uid="uid://ccddfa2cd4oi" path="res://sfx/enemy_die.wav" id="6_m4wil"]
+[ext_resource type="AudioStream" uid="uid://bdpmsplqcshdo" path="res://sfx/player_Shoot.wav" id="7_dqsov"]
+[ext_resource type="AudioStream" uid="uid://62un703pi5qc" path="res://sfx/break_enemy.wav" id="8_4rhxq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cokcj"]
 size = Vector2(54, 54)
@@ -48,15 +51,15 @@ z_index = -1
 script = ExtResource("1_88fdb")
 bullet_size = 2
 
-[node name="EnemySprite2" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.239999, 0.239999)
-texture = ExtResource("2_13wuu")
-
 [node name="EnemySprite" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_13wuu")
 metadata/_edit_lock_ = true
+
+[node name="EnemySprite2" type="Sprite2D" parent="EnemySprite"]
+rotation = 0.785397
+scale = Vector2(1.19999, 1.19999)
+texture = ExtResource("2_13wuu")
 
 [node name="HurtBox" type="Area2D" parent="."]
 script = ExtResource("1_4ijcw")
@@ -110,6 +113,23 @@ one_shot = true
 width_curve = SubResource("Curve_tgy05")
 script = ExtResource("5_jp6an")
 MAX_POINTS = 35
+
+[node name="enemydie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_m4wil")
+volume_db = -30.706
+bus = &"SFX"
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dqsov")
+volume_db = -15.848
+pitch_scale = 0.62
+bus = &"SFX"
+
+[node name="break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4rhxq")
+volume_db = -33.677
+pitch_scale = 0.5
+bus = &"SFX"
 
 [connection signal="timeout" from="EvasionCooldown" to="." method="_evasion_cooldown"]
 [connection signal="timeout" from="SequenceCooldown" to="." method="_do_sequence"]

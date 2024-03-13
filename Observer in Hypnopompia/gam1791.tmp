@@ -1,0 +1,340 @@
+[gd_scene load_steps=24 format=3 uid="uid://b1dmmacoex5dq"]
+
+[ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="1_0kmah"]
+[ext_resource type="Script" path="res://Systems/game_manager.gd" id="1_57tg7"]
+[ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="1_qc7xa"]
+[ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_higsa"]
+[ext_resource type="Script" path="res://Systems/FirstSequence.gd" id="5_kev51"]
+[ext_resource type="Script" path="res://Systems/summoner.gd" id="6_t1sbh"]
+[ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="7_osdyw"]
+[ext_resource type="FontFile" uid="uid://b0mqpqwby8wbx" path="res://fonts/Organo.ttf" id="11_2saw7"]
+[ext_resource type="Script" path="res://Systems/GUI.gd" id="12_cugu7"]
+[ext_resource type="Texture2D" uid="uid://ctgiii12rnpr0" path="res://icons/negative.png" id="12_mjw83"]
+[ext_resource type="Texture2D" uid="uid://qefh2jqf6xj1" path="res://icons/sound.png" id="13_3fkqh"]
+[ext_resource type="Texture2D" uid="uid://cprfw8n2v0mq2" path="res://icons/positive.png" id="13_3ofiw"]
+[ext_resource type="Texture2D" uid="uid://s3vjeblnyadu" path="res://icons/mute.png" id="14_7005m"]
+[ext_resource type="Texture2D" uid="uid://bg1opnept3spa" path="res://icons/negative_press.png" id="14_veqcw"]
+[ext_resource type="Texture2D" uid="uid://b527a02g1rvhf" path="res://icons/positive_press.png" id="18_ol3j0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeaky"]
+shader = ExtResource("1_0kmah")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6gxl"]
+shader = ExtResource("1_0kmah")
+
+[sub_resource type="Animation" id="Animation_j2qs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inverters/BigWhiteCircle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.18, 0.18)]
+}
+
+[sub_resource type="Animation" id="Animation_3tkir"]
+resource_name = "first_sequence"
+length = 75.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inverters/BigWhiteCircle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 10.1, 15, 20.1, 30.3, 34.9, 44.9, 48.5, 55, 57.5, 65.1, 67.2, 75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.18, 0.18), Vector2(0.3, 0.3), Vector2(0.3, 0.3), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1.4, 1.4), Vector2(1.7, 1.7), Vector2(1.7, 1.7), Vector2(2.4, 2.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvh88"]
+_data = {
+"RESET": SubResource("Animation_j2qs7"),
+"first_sequence": SubResource("Animation_3tkir")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88raq"]
+size = Vector2(86, 1098)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2627v"]
+size = Vector2(1930, 20)
+
+[sub_resource type="Theme" id="Theme_gx8y3"]
+default_font = ExtResource("11_2saw7")
+default_font_size = 37
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_57tg7")
+metadata/_edit_lock_ = true
+
+[node name="FirstSequence" type="Node2D" parent="."]
+script = ExtResource("5_kev51")
+metadata/_edit_lock_ = true
+
+[node name="InvertedEnemies" type="Node2D" parent="FirstSequence"]
+metadata/_edit_lock_ = true
+
+[node name="Enemy" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
+position = Vector2(448, 483)
+
+[node name="Inverters" type="Node2D" parent="FirstSequence"]
+z_index = 2
+
+[node name="BigWhiteCircle" type="Sprite2D" parent="FirstSequence/Inverters"]
+visible = false
+material = SubResource("ShaderMaterial_jeaky")
+position = Vector2(960, 540)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_higsa")
+
+[node name="Polygon2D" type="Polygon2D" parent="FirstSequence/Inverters"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(740, -720)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(76.3077, 403.692, -81.2308, 777.846, 76.3077, 1152, 192, 1152, 352, 777.846, 194.462, 403.692)
+
+[node name="ColorRect" type="ColorRect" parent="FirstSequence/Inverters"]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 1952.0
+offset_bottom = 1120.0
+
+[node name="DefaultEnemies" type="Node2D" parent="FirstSequence"]
+z_index = 2
+metadata/_edit_lock_ = true
+
+[node name="FirstSequencePlayer" type="AnimationPlayer" parent="FirstSequence"]
+libraries = {
+"": SubResource("AnimationLibrary_qvh88")
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="FirstSequence"]
+volume_db = -26.274
+bus = &"Music"
+
+[node name="Outside" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
+position = Vector2(960, 540)
+player_sequence = 1
+camera = NodePath("../..")
+can_move = true
+can_break = true
+can_shoot = true
+
+[node name="MapWall" type="StaticBody2D" parent="Outside"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(-32, 539)
+shape = SubResource("RectangleShape2D_88raq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(1952, 539)
+shape = SubResource("RectangleShape2D_88raq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(955, 0)
+shape = SubResource("RectangleShape2D_2627v")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(955, 1080)
+shape = SubResource("RectangleShape2D_2627v")
+
+[node name="Summoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer")]
+visible = false
+script = ExtResource("6_t1sbh")
+inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
+default_layer = NodePath("../FirstSequence/DefaultEnemies")
+
+[node name="Marker2D" type="Marker2D" parent="Summoner"]
+position = Vector2(802, 1008)
+
+[node name="Marker2D2" type="Marker2D" parent="Summoner"]
+position = Vector2(1017, 100)
+
+[node name="Marker2D3" type="Marker2D" parent="Summoner"]
+position = Vector2(1664, 351)
+
+[node name="Marker2D4" type="Marker2D" parent="Summoner"]
+position = Vector2(130, 822)
+
+[node name="Marker2D5" type="Marker2D" parent="Summoner"]
+position = Vector2(991, 1001)
+
+[node name="Marker2D6" type="Marker2D" parent="Summoner"]
+position = Vector2(665, 877)
+
+[node name="Marker2D7" type="Marker2D" parent="Summoner"]
+position = Vector2(110, 534)
+
+[node name="Marker2D8" type="Marker2D" parent="Summoner"]
+position = Vector2(265, 107)
+
+[node name="Marker2D9" type="Marker2D" parent="Summoner"]
+position = Vector2(1557, 147)
+
+[node name="Marker2D10" type="Marker2D" parent="Summoner"]
+position = Vector2(1766, 726)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gx8y3")
+script = ExtResource("12_cugu7")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="starttext" type="Label" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 160.0
+offset_right = 30.0
+offset_bottom = 183.0
+grow_horizontal = 2
+text = "fortunately, you are still dreaming
+
+
+press any key to enter rem state"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 32.0
+offset_right = -18.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
+[node name="SoundOptions" type="VBoxContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -88.0
+offset_right = -120.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Master" type="HBoxContainer" parent="CanvasLayer/GUI/SoundOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "main"
+
+[node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Master"]
+layout_mode = 2
+texture_normal = ExtResource("12_mjw83")
+texture_pressed = ExtResource("14_veqcw")
+stretch_mode = 3
+
+[node name="Mute" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Master"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("13_3fkqh")
+texture_pressed = ExtResource("14_7005m")
+
+[node name="Positive" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Master"]
+layout_mode = 2
+texture_normal = ExtResource("13_3ofiw")
+texture_pressed = ExtResource("18_ol3j0")
+
+[node name="Music" type="HBoxContainer" parent="CanvasLayer/GUI/SoundOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "music"
+
+[node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Music"]
+layout_mode = 2
+texture_normal = ExtResource("12_mjw83")
+texture_pressed = ExtResource("14_veqcw")
+stretch_mode = 3
+
+[node name="Mute" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Music"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("13_3fkqh")
+texture_pressed = ExtResource("14_7005m")
+
+[node name="Positive" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Music"]
+layout_mode = 2
+texture_normal = ExtResource("13_3ofiw")
+texture_pressed = ExtResource("18_ol3j0")
+
+[node name="SFX" type="HBoxContainer" parent="CanvasLayer/GUI/SoundOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+
+[node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/SFX"]
+layout_mode = 2
+texture_normal = ExtResource("12_mjw83")
+texture_pressed = ExtResource("14_veqcw")
+stretch_mode = 3
+
+[node name="Mute" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/SFX"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("13_3fkqh")
+texture_pressed = ExtResource("14_7005m")
+
+[node name="Positive" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/SFX"]
+layout_mode = 2
+texture_normal = ExtResource("13_3ofiw")
+texture_pressed = ExtResource("18_ol3j0")
+
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Master/Negative" to="CanvasLayer/GUI" method="_on_master_negative_pressed"]
+[connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/Master/Mute" to="CanvasLayer/GUI" method="_on_master_mute_toggled"]
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Master/Positive" to="CanvasLayer/GUI" method="_on_maste_positive_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Music/Negative" to="CanvasLayer/GUI" method="_on_music_negative_pressed"]
+[connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/Music/Mute" to="CanvasLayer/GUI" method="_on_music_mute_toggled"]
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Music/Positive" to="CanvasLayer/GUI" method="_on_music_positive_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Negative" to="CanvasLayer/GUI" method="_on_sfx_negative_pressed"]
+[connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/SFX/Mute" to="CanvasLayer/GUI" method="_on_sfx_mute_toggled"]
+[connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Positive" to="CanvasLayer/GUI" method="_on_sfx_positive_pressed"]

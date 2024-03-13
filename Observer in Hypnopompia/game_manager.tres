@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://mjr4kutb7sfq"]
+
+[ext_resource type="FontFile" uid="uid://bm14412a462qf" path="res://fonts/Oswald-VariableFont_wght.ttf" id="1_jpdvk"]
+
+[resource]
+default_font = ExtResource("1_jpdvk")
+default_font_size = 72

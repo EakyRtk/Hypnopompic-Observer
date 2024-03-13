@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://h3i12e63gul"]
+[gd_scene load_steps=7 format=3 uid="uid://h3i12e63gul"]
 
 [ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="1_ol2wb"]
 [ext_resource type="Script" path="res://Player/PlayerBullet/player_bullet.gd" id="1_vg4ak"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_y8fo7"]
+[ext_resource type="Script" path="res://Systems/trail.gd" id="4_dptxs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_he74h"]
 radius = 19.105
+
+[sub_resource type="Curve" id="Curve_f0frl"]
+_data = [Vector2(0, 0.362637), 0.0, 0.0, 0, 0, Vector2(0.989474, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="PlayerBullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_vg4ak")
@@ -26,5 +31,14 @@ shape = SubResource("CircleShape2D_he74h")
 visible = false
 position = Vector2(1.3113e-06, -3.09944e-06)
 scale = Vector2(2.8, 2.8)
+
+[node name="Trails" type="Line2D" parent="."]
+width = 38.0
+width_curve = SubResource("Curve_f0frl")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_dptxs")
+MAX_POINTS = 5
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

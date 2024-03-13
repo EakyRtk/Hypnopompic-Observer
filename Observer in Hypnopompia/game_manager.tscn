@@ -1,65 +1,714 @@
-[gd_scene load_steps=25 format=3 uid="uid://b1dmmacoex5dq"]
+[gd_scene load_steps=29 format=3 uid="uid://b1dmmacoex5dq"]
 
 [ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="1_0kmah"]
 [ext_resource type="Script" path="res://Systems/game_manager.gd" id="1_57tg7"]
 [ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="1_qc7xa"]
+[ext_resource type="FontFile" uid="uid://bm14412a462qf" path="res://fonts/Oswald-VariableFont_wght.ttf" id="2_gocqg"]
 [ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_higsa"]
-[ext_resource type="Script" path="res://Systems/camera.gd" id="4_3rcpt"]
+[ext_resource type="Theme" uid="uid://mjr4kutb7sfq" path="res://game_manager.tres" id="2_tq83m"]
+[ext_resource type="PackedScene" uid="uid://de6d18p6pwdmx" path="res://Enemies/AttackAreas/vertical_attack.tscn" id="3_31rny"]
+[ext_resource type="PackedScene" uid="uid://bpij8mrsuexhu" path="res://Enemies/AttackAreas/horizontal_attack.tscn" id="4_5qja8"]
 [ext_resource type="Script" path="res://Systems/FirstSequence.gd" id="5_kev51"]
 [ext_resource type="Script" path="res://Systems/summoner.gd" id="6_t1sbh"]
-[ext_resource type="PackedScene" uid="uid://c30k3tgjk8k65" path="res://Enemies/First Section Enemies/enemy.tscn" id="7_osdyw"]
-[ext_resource type="FontFile" uid="uid://b0mqpqwby8wbx" path="res://fonts/Organo.ttf" id="11_2saw7"]
 [ext_resource type="Script" path="res://Systems/GUI.gd" id="12_cugu7"]
 [ext_resource type="Texture2D" uid="uid://ctgiii12rnpr0" path="res://icons/negative.png" id="12_mjw83"]
 [ext_resource type="Texture2D" uid="uid://qefh2jqf6xj1" path="res://icons/sound.png" id="13_3fkqh"]
 [ext_resource type="Texture2D" uid="uid://cprfw8n2v0mq2" path="res://icons/positive.png" id="13_3ofiw"]
 [ext_resource type="Texture2D" uid="uid://s3vjeblnyadu" path="res://icons/mute.png" id="14_7005m"]
 [ext_resource type="Texture2D" uid="uid://bg1opnept3spa" path="res://icons/negative_press.png" id="14_veqcw"]
+[ext_resource type="PackedScene" uid="uid://wmahug2by3ux" path="res://Player/safe_area.tscn" id="16_4lcj8"]
 [ext_resource type="Texture2D" uid="uid://b527a02g1rvhf" path="res://icons/positive_press.png" id="18_ol3j0"]
+[ext_resource type="AudioStream" uid="uid://c5ei12owd7brp" path="res://Music/angelic-random.mp3" id="19_mc6fk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeaky"]
-render_priority = 0
 shader = ExtResource("1_0kmah")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_10ht3"]
-render_priority = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6gxl"]
 shader = ExtResource("1_0kmah")
 
-[sub_resource type="Animation" id="Animation_j2qs7"]
-length = 0.001
-tracks/0/type = "value"
+[sub_resource type="Animation" id="Animation_wi5qm"]
+resource_name = "0"
+length = 40.0
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Inverters/BigWhiteCircle:scale")
+tracks/0/path = NodePath("Inverters/left:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.0748, 19.8, 22.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Inverters/left:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-1952, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, 480, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.0748, 19.8, 22.3)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Summoner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.2, 19.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0, 0],
+"method": &"summon"
+}, {
+"args": [0],
+"method": &"summon_on_all"
+}, {
+"args": [1],
+"method": &"summon_on_all"
+}]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Summoner/Marker2D:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0, 1756, -0.25, 0, 0.25, 0, 1621, -0.25, 0, 0.25, 0, 1472, -0.25, 0, 0.25, 0, 1621, -0.25, 0, 0.25, 0, 1766, -0.25, 0, 0.25, 0, 384, -0.25, 0, 0.25, 0, 399.973, -0.25, 0, 0.25, 0, 192, -0.25, 0, 0.25, 0, 1681, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 24.7, 25.1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Summoner/Marker2D:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(160, -0.25, 0, 0.25, 0, 512, -0.25, 0, 0.25, 0, 928, -0.25, 0, 0.25, 0, 107, -0.25, 0, 0.25, 0, 288, -0.25, 0, 0.25, 0, 480, -0.25, 0, 0.25, 0, 716, -0.25, 0, 0.25, 0, 936, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 101.047, -0.25, 0, 0.25, 0, 224, -0.25, 0, 0.25, 0, 185, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 24.7, 25.1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Inverters/right:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2624, -0.25, 0, 0.25, 0, 1952, -0.25, 0, 0.25, 0, 1952, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, -64, -0.25, 0, 0.25, 0, 1600, -0.25, 0, 0.25, 0, 1600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(4.5, 5.5, 20, 21.4, 21.6, 22.2, 24.6, 34)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Inverters/right:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(4.5, 5.5, 20, 21.4, 21.6, 22.2, 24.6, 34)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Inverters/right:polygon")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(10.6, 12.7, 18.1, 19.2, 34),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.18, 0.18)]
+"values": [PackedVector2Array(-78.7693, 393.846, -354.462, 768, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-78.7693, 393.846, -354.462, 1161.85, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-78.7693, 393.846, -354.462, 1161.85, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846), PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Inverters/left:polygon")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(10.6, 12.1, 18.1, 19.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 196.923, 1161.85, 196.923, 393.846), PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 196.923, 1161.85, 551.385, 393.846), PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 196.923, 1161.85, 551.385, 393.846), PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 1378.46, 1161.85, 1378.46, 393.846)]
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Summoner/Marker2D2:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(290, -0.25, 0, 0.25, 0, 290, -0.25, 0, 0.25, 0, 290, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0, 1681, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8, 8.5, 12.3, 24.7, 25.1)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Summoner/Marker2D2:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 736, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8, 8.5, 12.3, 24.7, 25.1)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Summoner/Marker2D3:position:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8.5)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Summoner/Marker2D3:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(389, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8.5)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Summoner/Marker2D4:position:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(110, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8.5, 25.1)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Summoner/Marker2D4:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(530, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(8.5, 25.1)
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../GameplayTexts/Control/Label:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 17.8, 21.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../SecondSummoner")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(30.2, 37.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [4],
+"method": &"summon_on_all"
+}, {
+"args": [0],
+"method": &"summon_on_all"
+}]
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SafeArea:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(25.2, 27.7, 34.2, 35.7)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("SafeArea:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-256, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(25.2, 27.7, 34.2, 35.7)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../GameplayTexts/Control/Label2:position:x")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(704, -0.25, 0, 0.25, 0, 704, -0.25, 0, 0.25, 0, 704, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 25.2, 27.7)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../GameplayTexts/Control/Label2:position:y")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-320, -0.25, 0, 0.25, 0, -320, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 25.2, 27.7)
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../GameplayTexts/Control/Label2:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0.1, 22.2, 34.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../GameplayTexts/Control/Label3:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(32.4, 36.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Inverters/right2:position:x")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1216, -0.25, 0, 0.25, 0, 1216, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(35.1, 35.9)
+}
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Inverters/right2:position:y")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1952, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(35.1, 35.9)
+}
+tracks/25/type = "bezier"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Inverters/right4:position:x")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(576, -0.25, 0, 0.25, 0, 576, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(34.7, 36.4)
+}
+tracks/26/type = "bezier"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Inverters/right4:position:y")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1920, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(34.7, 36.4)
+}
+tracks/27/type = "bezier"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Inverters/right5:position:x")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(192, -0.25, 0, 0.25, 0, 192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(34.4, 36.5)
+}
+tracks/28/type = "bezier"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Inverters/right5:position:y")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(463, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(34.4, 36.5)
 }
 
-[sub_resource type="Animation" id="Animation_3tkir"]
-resource_name = "first_sequence"
-length = 75.0
-tracks/0/type = "value"
+[sub_resource type="Animation" id="Animation_3cjkk"]
+resource_name = "1"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_7ipfh"]
+resource_name = "2"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_t44vy"]
+length = 0.001
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Inverters/BigWhiteCircle:scale")
+tracks/0/path = NodePath("Inverters/left:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 10.1, 15, 20.1, 30.3, 34.9, 44.9, 48.5, 55, 57.5, 65.1, 67.2, 75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.18, 0.18), Vector2(0.3, 0.3), Vector2(0.3, 0.3), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1.4, 1.4), Vector2(1.7, 1.7), Vector2(1.7, 1.7), Vector2(2.4, 2.4)]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Inverters/left:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1984, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Summoner/Marker2D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Summoner/Marker2D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Inverters/right:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2624, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Inverters/right:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-768, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Inverters/right:polygon")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-78.7693, 393.846, -354.462, 768, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Inverters/left:polygon")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 196.923, 1161.85, 196.923, 393.846)]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Summoner/Marker2D2:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(290, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Summoner/Marker2D2:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Summoner/Marker2D3:position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Summoner/Marker2D3:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(389, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Summoner/Marker2D4:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(110, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Summoner/Marker2D4:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(530, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../GameplayTexts/Control/Label:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SafeArea:position:x")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(950, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SafeArea:position:y")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../GameplayTexts/Control/Label2:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(704, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../GameplayTexts/Control/Label2:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../GameplayTexts/Control/Label2:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../GameplayTexts/Control/Label3:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Inverters/right2:position:x")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1216, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Inverters/right2:position:y")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1888, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Inverters/right4:position:x")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(576, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Inverters/right4:position:y")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1920, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/25/type = "bezier"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Inverters/right5:position:x")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/26/type = "bezier"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Inverters/right5:position:y")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(463, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvh88"]
 _data = {
-"RESET": SubResource("Animation_j2qs7"),
-"first_sequence": SubResource("Animation_3tkir")
+"0": SubResource("Animation_wi5qm"),
+"1": SubResource("Animation_3cjkk"),
+"2": SubResource("Animation_7ipfh"),
+"RESET": SubResource("Animation_t44vy")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88raq"]
@@ -68,158 +717,70 @@ size = Vector2(86, 1098)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2627v"]
 size = Vector2(1930, 20)
 
-[sub_resource type="Theme" id="Theme_gx8y3"]
-default_font = ExtResource("11_2saw7")
-default_font_size = 37
-
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_57tg7")
 metadata/_edit_lock_ = true
 
-[node name="FirstSequence" type="Node2D" parent="."]
-script = ExtResource("5_kev51")
+[node name="GameplayTexts" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="GameplayTexts"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1902.0
+offset_bottom = 1076.0
+theme = ExtResource("2_tq83m")
 metadata/_edit_lock_ = true
 
-[node name="InvertedEnemies" type="Node2D" parent="FirstSequence"]
-metadata/_edit_lock_ = true
-
-[node name="Enemy" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(192, 128)
-
-[node name="Enemy2" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(192, 417)
-
-[node name="Enemy3" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(192, 768)
-
-[node name="Enemy4" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(576, 1032)
-
-[node name="Enemy5" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(1248, 1024)
-
-[node name="Enemy6" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(1766, 540)
-
-[node name="Enemy7" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(1440, 106)
-
-[node name="Enemy8" parent="FirstSequence/InvertedEnemies" instance=ExtResource("7_osdyw")]
-position = Vector2(586, 132)
-
-[node name="Inverters" type="Node2D" parent="FirstSequence"]
-z_index = 2
-
-[node name="BigWhiteCircle" type="Sprite2D" parent="FirstSequence/Inverters"]
+[node name="Label" type="Label" parent="GameplayTexts/Control"]
 visible = false
-material = SubResource("ShaderMaterial_jeaky")
-position = Vector2(960, 540)
-scale = Vector2(0.18, 0.18)
-texture = ExtResource("2_higsa")
+self_modulate = Color(0, 0, 0, 1)
+z_index = 7
+layout_mode = 0
+offset_left = 320.0
+offset_top = 100.0
+offset_right = 1560.0
+offset_bottom = 977.0
+text = "some enemies will appear
+only white
 
-[node name="Polygon2D" type="Polygon2D" parent="FirstSequence/Inverters"]
-texture_repeat = 2
-material = SubResource("ShaderMaterial_10ht3")
-position = Vector2(740, -720)
-scale = Vector2(1.625, 1.625)
-polygon = PackedVector2Array(76.3077, 403.692, -81.2308, 777.846, 76.3077, 1152, 192, 1152, 352, 777.846, 194.462, 403.692)
 
-[node name="ColorRect" type="ColorRect" parent="FirstSequence/Inverters"]
+
+
+
+only visible in the dark"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="GameplayTexts/Control"]
 visible = false
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 1952.0
-offset_bottom = 1120.0
+z_index = 4
+layout_mode = 0
+offset_left = 704.0
+offset_top = 256.0
+offset_right = 1258.0
+offset_bottom = 363.0
+text = "enter to the safe area"
 
-[node name="DefaultEnemies" type="Node2D" parent="FirstSequence"]
-z_index = 2
-metadata/_edit_lock_ = true
-
-[node name="FirstSequencePlayer" type="AnimationPlayer" parent="FirstSequence"]
-libraries = {
-"": SubResource("AnimationLibrary_qvh88")
-}
-
-[node name="Music" type="AudioStreamPlayer" parent="FirstSequence"]
-volume_db = -26.274
-bus = &"Music"
-
-[node name="Outside" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
-z_index = 2
-position = Vector2(960, 540)
-player_sequence = 1
-camera = NodePath("../Camera")
-can_move = true
-can_break = true
-can_shoot = true
-
-[node name="Camera" type="Camera2D" parent="Outside"]
-unique_name_in_owner = true
-position = Vector2(960, 540)
-enabled = false
-script = ExtResource("4_3rcpt")
-shakeFade = 6.0
-
-[node name="MapWall" type="StaticBody2D" parent="Outside"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Outside/MapWall"]
-position = Vector2(-32, 539)
-shape = SubResource("RectangleShape2D_88raq")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Outside/MapWall"]
-position = Vector2(1952, 539)
-shape = SubResource("RectangleShape2D_88raq")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Outside/MapWall"]
-position = Vector2(955, 0)
-shape = SubResource("RectangleShape2D_2627v")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Outside/MapWall"]
-position = Vector2(955, 1080)
-shape = SubResource("RectangleShape2D_2627v")
-
-[node name="Summoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer", "second_sequence_layer")]
+[node name="Label3" type="Label" parent="GameplayTexts/Control"]
 visible = false
-script = ExtResource("6_t1sbh")
-inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
-default_layer = NodePath("../FirstSequence/DefaultEnemies")
-second_sequence_layer = NodePath("")
+layout_mode = 0
+offset_left = 704.0
+offset_top = 768.0
+offset_right = 1326.0
+offset_bottom = 875.0
+text = "SPACE to break them all"
 
-[node name="Marker2D" type="Marker2D" parent="Summoner"]
-position = Vector2(802, 1008)
-
-[node name="Marker2D2" type="Marker2D" parent="Summoner"]
-position = Vector2(1017, 100)
-
-[node name="Marker2D3" type="Marker2D" parent="Summoner"]
-position = Vector2(1664, 351)
-
-[node name="Marker2D4" type="Marker2D" parent="Summoner"]
-position = Vector2(130, 822)
-
-[node name="Marker2D5" type="Marker2D" parent="Summoner"]
-position = Vector2(991, 1001)
-
-[node name="Marker2D6" type="Marker2D" parent="Summoner"]
-position = Vector2(665, 877)
-
-[node name="Marker2D7" type="Marker2D" parent="Summoner"]
-position = Vector2(110, 534)
-
-[node name="Marker2D8" type="Marker2D" parent="Summoner"]
-position = Vector2(265, 107)
-
-[node name="Marker2D9" type="Marker2D" parent="Summoner"]
-position = Vector2(1557, 147)
-
-[node name="Marker2D10" type="Marker2D" parent="Summoner"]
-position = Vector2(1766, 726)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="ScoreLabel" type="Label" parent="."]
+layout_direction = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1756.0
+offset_top = 64.0
+offset_right = 1866.0
+offset_bottom = 143.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_gocqg")
+theme_override_font_sizes/font_size = 52
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -230,38 +791,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_gx8y3")
+theme = ExtResource("2_tq83m")
 script = ExtResource("12_cugu7")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 463.0
+offset_right = 573.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 32
+text = "WASD to move
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/GUI/Label"]
+layout_mode = 0
+offset_left = 1152.0
+offset_right = 1533.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 32
+text = "left click to attack
+
+shift to raise shields"
+horizontal_alignment = 1
 
 [node name="starttext" type="Label" parent="CanvasLayer/GUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -10.0
-offset_top = 160.0
-offset_right = 30.0
-offset_bottom = 183.0
+offset_left = -608.0
+offset_top = 64.0
+offset_right = 661.0
+offset_bottom = 941.0
 grow_horizontal = 2
-text = "fortunately, you are still dreaming
+text = "unfortunately, you are half-awake and half-asleep
 
 
-press any key to enter rem state"
+
+
+
+press any key twice to leak your 
+consciousness into the reality"
 horizontal_alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -128.0
-offset_top = 32.0
-offset_right = -18.0
-offset_bottom = 64.0
-grow_horizontal = 0
 
 [node name="SoundOptions" type="VBoxContainer" parent="CanvasLayer/GUI"]
 layout_mode = 1
@@ -270,9 +845,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -88.0
-offset_right = -120.0
+offset_left = -327.0
+offset_top = -288.0
+offset_right = -32.0
 offset_bottom = -48.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -287,6 +862,8 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/Master"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_gocqg")
+theme_override_font_sizes/font_size = 32
 text = "main"
 
 [node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Master"]
@@ -315,6 +892,8 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/Music"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_gocqg")
+theme_override_font_sizes/font_size = 32
 text = "music"
 
 [node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/Music"]
@@ -343,7 +922,9 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/GUI/SoundOptions/SFX"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "SFX"
+theme_override_fonts/font = ExtResource("2_gocqg")
+theme_override_font_sizes/font_size = 32
+text = "sfx"
 
 [node name="Negative" type="TextureButton" parent="CanvasLayer/GUI/SoundOptions/SFX"]
 layout_mode = 2
@@ -362,6 +943,216 @@ layout_mode = 2
 texture_normal = ExtResource("13_3ofiw")
 texture_pressed = ExtResource("18_ol3j0")
 
+[node name="FirstSequence" type="Node2D" parent="."]
+script = ExtResource("5_kev51")
+metadata/_edit_lock_ = true
+
+[node name="SafeArea" parent="FirstSequence" instance=ExtResource("16_4lcj8")]
+position = Vector2(950, -256)
+
+[node name="Hands" type="Node2D" parent="FirstSequence"]
+
+[node name="VerticalAttack" parent="FirstSequence/Hands" instance=ExtResource("3_31rny")]
+position = Vector2(130, 1664)
+
+[node name="HorizontalAttack" parent="FirstSequence/Hands" instance=ExtResource("4_5qja8")]
+position = Vector2(-1056, 896)
+
+[node name="InvertedEnemies" type="Node2D" parent="FirstSequence"]
+metadata/_edit_lock_ = true
+
+[node name="Inverters" type="Node2D" parent="FirstSequence"]
+z_index = 3
+
+[node name="BigWhiteCircle" type="Sprite2D" parent="FirstSequence/Inverters"]
+visible = false
+material = SubResource("ShaderMaterial_jeaky")
+position = Vector2(960, 540)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_higsa")
+
+[node name="Polygon2D" type="Polygon2D" parent="FirstSequence/Inverters"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(740, -720)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(76.3077, 403.692, -81.2308, 777.846, 76.3077, 1152, 192, 1152, 352, 777.846, 194.462, 403.692)
+
+[node name="left" type="Polygon2D" parent="FirstSequence/Inverters"]
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(-192, -1984)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(-78.7693, 393.846, -78.7693, 1161.85, 196.923, 1161.85, 196.923, 393.846)
+
+[node name="right" type="Polygon2D" parent="FirstSequence/Inverters"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(2624, -768)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(-78.7693, 393.846, -354.462, 768, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846)
+metadata/_edit_lock_ = true
+
+[node name="right2" type="Polygon2D" parent="FirstSequence/Inverters"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(1216, -1888)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846)
+
+[node name="right4" type="Polygon2D" parent="FirstSequence/Inverters"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(576, -1920)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846)
+
+[node name="right5" type="Polygon2D" parent="FirstSequence/Inverters"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x6gxl")
+position = Vector2(192, 463)
+scale = Vector2(1.625, 1.625)
+polygon = PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846)
+
+[node name="ColorRect" type="ColorRect" parent="FirstSequence/Inverters"]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 1952.0
+offset_bottom = 1120.0
+
+[node name="DefaultEnemies" type="Node2D" parent="FirstSequence"]
+z_index = 4
+metadata/_edit_lock_ = true
+
+[node name="FirstSequencePlayer" type="AnimationPlayer" parent="FirstSequence"]
+libraries = {
+"": SubResource("AnimationLibrary_qvh88")
+}
+
+[node name="Outside" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Player" parent="Outside" node_paths=PackedStringArray("camera") instance=ExtResource("1_qc7xa")]
+position = Vector2(960, 540)
+player_sequence = 1
+camera = NodePath("../..")
+can_take_damage = true
+can_break = true
+can_shoot = true
+
+[node name="MapWall" type="StaticBody2D" parent="Outside"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(-32, 539)
+shape = SubResource("RectangleShape2D_88raq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(1952, 539)
+shape = SubResource("RectangleShape2D_88raq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(955, 0)
+shape = SubResource("RectangleShape2D_2627v")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Outside/MapWall"]
+position = Vector2(955, 1080)
+shape = SubResource("RectangleShape2D_2627v")
+
+[node name="Summoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer")]
+visible = false
+script = ExtResource("6_t1sbh")
+inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
+default_layer = NodePath("../FirstSequence/DefaultEnemies")
+
+[node name="Marker2D" type="Marker2D" parent="Summoner"]
+position = Vector2(64, 160)
+
+[node name="Marker2D2" type="Marker2D" parent="Summoner"]
+position = Vector2(290, 256)
+
+[node name="Marker2D3" type="Marker2D" parent="Summoner"]
+position = Vector2(192, 389)
+
+[node name="Marker2D4" type="Marker2D" parent="Summoner"]
+position = Vector2(110, 530)
+
+[node name="SecondSummoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer")]
+script = ExtResource("6_t1sbh")
+inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
+default_layer = NodePath("../FirstSequence/DefaultEnemies")
+
+[node name="Marker2D" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1216, 64)
+
+[node name="Marker2D2" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1546, 170)
+
+[node name="Marker2D3" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1731, 363)
+
+[node name="Marker2D4" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1755, 637)
+
+[node name="Marker2D5" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1698, 788)
+
+[node name="Marker2D6" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1570, 938)
+
+[node name="Marker2D7" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1258, 977)
+
+[node name="Marker2D8" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(1079, 992)
+
+[node name="Marker2D9" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(832, 992)
+
+[node name="Marker2D10" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(608, 977)
+
+[node name="Marker2D11" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(384, 942)
+
+[node name="Marker2D12" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(160, 846)
+
+[node name="Marker2D13" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(64, 530)
+
+[node name="Marker2D14" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(96, 704)
+
+[node name="Marker2D15" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(130, 417)
+
+[node name="Marker2D16" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(192, 224)
+
+[node name="Marker2D17" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(352, 128)
+
+[node name="Marker2D18" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(608, 96)
+
+[node name="Marker2D19" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(768, 64)
+
+[node name="Marker2D20" type="Marker2D" parent="SecondSummoner"]
+position = Vector2(960, 64)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="textdisappertime" type="Timer" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_mc6fk")
+volume_db = -25.297
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Master/Negative" to="CanvasLayer/GUI" method="_on_master_negative_pressed"]
 [connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/Master/Mute" to="CanvasLayer/GUI" method="_on_master_mute_toggled"]
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/Master/Positive" to="CanvasLayer/GUI" method="_on_maste_positive_pressed"]
@@ -371,3 +1162,6 @@ texture_pressed = ExtResource("18_ol3j0")
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Negative" to="CanvasLayer/GUI" method="_on_sfx_negative_pressed"]
 [connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/SFX/Mute" to="CanvasLayer/GUI" method="_on_sfx_mute_toggled"]
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Positive" to="CanvasLayer/GUI" method="_on_sfx_positive_pressed"]
+[connection signal="animation_changed" from="FirstSequence/FirstSequencePlayer" to="FirstSequence" method="_on_animation_changed"]
+[connection signal="stop_sequence" from="Outside/Player" to="FirstSequence" method="_on_player_stop_sequence"]
+[connection signal="timeout" from="textdisappertime" to="." method="_on_textdisappertime_timeout"]

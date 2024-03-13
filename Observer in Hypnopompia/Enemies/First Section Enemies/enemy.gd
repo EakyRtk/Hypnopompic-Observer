@@ -7,6 +7,7 @@ static var max_evasion := 2
 const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn")
 
 @onready var enemy_sprite = $EnemySprite
+@onready var breaking = $break
 
 @onready var sequence_cooldown = $SequenceCooldown
 @onready var evasion_cooldown = $EvasionCooldown
@@ -17,6 +18,11 @@ const S_BULLET = preload("res://Enemies/Invert Bullet/color_inverted_bullet.tscn
 @export var bullet_size := 3
 @export var speed := 60
 @export var rmove_range := 120
+
+@onready var shoot = $shoot
+@onready var enemydie = $enemydie
+
+
 
 #INFO: If black enemy summons under invert area it will result an invisible enemy.
 @export_enum("White/Inverted", "Black") var color_type := 0
@@ -78,6 +84,7 @@ func _shoot() -> void:
 	if not can_shoot:
 		return
 	for i in range(3):
+		shoot.play()
 		var bullet = S_BULLET.instantiate()
 		bullet.top_level = true
 		bullet.position = position
@@ -89,6 +96,7 @@ func _shoot() -> void:
 func do_break_effect() -> void:
 	if random_move_tween != null:
 		random_move_tween.kill()
+	
 	center = General.player.global_position
 	can_move = false
 	no_sequence = true
@@ -103,7 +111,7 @@ func do_break_effect() -> void:
 	breakline.add_point(breaking_point2 - Vector2(randi_range(-f,f), randi_range(-f,f)), 1)
 	
 	await get_tree().create_timer(0.62).timeout
-	
+	breaking.play()
 	for points in breakline.get_point_count():
 		ripparticle.position = breakline.get_point_position(breakline.get_point_count()-1)
 		ripparticle.emitting = true
@@ -112,6 +120,7 @@ func do_break_effect() -> void:
 		#breakline.remove_point(0)
 	breakline.visible = false
 	General.camera.apply_shake(10.0)
+	
 	hurt()
 	
 func evade() -> void:
@@ -131,6 +140,7 @@ func freeze()->void:
 func hurt() -> void:
 	if ded_initiated:
 		return
+	enemydie.play()
 	ded_initiated = true
 	set_process(false)
 	no_sequence = true

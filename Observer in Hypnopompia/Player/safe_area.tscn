@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://wmahug2by3ux"]
+
+[ext_resource type="Texture2D" uid="uid://iusgnv16gbp0" path="res://Enemies/white_circle.png" id="1_icbva"]
+[ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_ix0w0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyyxv"]
+radius = 192.0
+
+[node name="SafeArea" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.188235, 1, 0.380392, 1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("1_icbva")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_ix0w0")
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_jyyxv")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

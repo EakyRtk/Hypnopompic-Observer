@@ -1,32 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpij8mrsuexhu"]
+[gd_scene load_steps=6 format=3 uid="uid://de6d18p6pwdmx"]
 
 [ext_resource type="Script" path="res://Enemies/AttackAreas/general_area_attack.gd" id="1_8fyqa"]
-[ext_resource type="Texture2D" uid="uid://cicrbho2ph5ah" path="res://Enemies/AttackAreas/vertical_attack_placeholder.png" id="1_ipeba"]
+[ext_resource type="Texture2D" uid="uid://bq2rmky24uw46" path="res://Enemies/AttackAreas/vertical_attack.png" id="2_a4btn"]
 [ext_resource type="Script" path="res://Systems/Hit-Hurt Box/HitBox.gd" id="2_aytjs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y47ei"]
-size = Vector2(1888, 320)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7mji"]
+size = Vector2(288, 1056)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7by74"]
-size = Vector2(1912, 357)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fafo3"]
+size = Vector2(336, 1080)
 
 [node name="VerticalAttack" type="Node2D"]
 script = ExtResource("1_8fyqa")
 
-[node name="VerticalAttackPlaceholder" type="Sprite2D" parent="."]
-texture = ExtResource("1_ipeba")
+[node name="VerticalAttackSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_a4btn")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("2_aytjs")
 type = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_y47ei")
+shape = SubResource("RectangleShape2D_w7mji")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, -2.5)
-shape = SubResource("RectangleShape2D_7by74")
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_fafo3")
 disabled = true
