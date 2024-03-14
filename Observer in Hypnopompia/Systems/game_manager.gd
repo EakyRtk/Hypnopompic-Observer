@@ -30,13 +30,14 @@ func _input(event):
 		if start_req != 0:
 			start_req -= 1
 			return
+		label.visible = true
 		textdisappertime.start(5)
 		started = true
 		sound_options.visible = false
 		player.can_shoot = true
 		first_sequence.start_sequence()
 		var twinn = create_tween()
-		twinn.tween_property(starttext, "modulate", Color.TRANSPARENT, 2)
+		twinn.tween_property(starttext, "modulate", Color.TRANSPARENT, 2).set_trans(Tween.TRANS_QUAD)
 		await twinn.finished
 		starttext.visible = false
 		
@@ -53,7 +54,7 @@ func _input(event):
 		get_tree().quit()
 
 func _process(delta):
-	score_label.text = str(General.temp_hit_score + General.hit_score)
+	score_label.text = "fears: " + str(General.temp_hit_score + General.hit_score)
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, sFade * delta)
 	else:

@@ -47,6 +47,6 @@ func summon(s_index : int, s_type : typsummon_entity) -> void:
 			n_enemy.color_type = 1
 			default_layer.add_child(n_enemy)
 
-func summon_on_all(s_type : typsummon_entity) -> void:
-	for i in range(get_children().size()):
+func summon_on_all(s_type : typsummon_entity, amount := get_children().size()) -> void:
+	for i in amount:
 		summon(i, s_type)

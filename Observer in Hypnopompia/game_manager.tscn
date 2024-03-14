@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://b1dmmacoex5dq"]
+[gd_scene load_steps=30 format=3 uid="uid://b1dmmacoex5dq"]
 
 [ext_resource type="Shader" path="res://Systems/inverter.gdshader" id="1_0kmah"]
 [ext_resource type="Script" path="res://Systems/game_manager.gd" id="1_57tg7"]
 [ext_resource type="PackedScene" uid="uid://7jmsa1bknulo" path="res://Player/player.tscn" id="1_qc7xa"]
 [ext_resource type="FontFile" uid="uid://bm14412a462qf" path="res://fonts/Oswald-VariableFont_wght.ttf" id="2_gocqg"]
 [ext_resource type="Texture2D" uid="uid://dyvjemeuxnl5o" path="res://First Section/big_white_circle.png" id="2_higsa"]
+[ext_resource type="Texture2D" uid="uid://c8rkwjfr702ed" path="res://crown.png" id="2_isp14"]
 [ext_resource type="Theme" uid="uid://mjr4kutb7sfq" path="res://game_manager.tres" id="2_tq83m"]
 [ext_resource type="PackedScene" uid="uid://de6d18p6pwdmx" path="res://Enemies/AttackAreas/vertical_attack.tscn" id="3_31rny"]
 [ext_resource type="PackedScene" uid="uid://bpij8mrsuexhu" path="res://Enemies/AttackAreas/horizontal_attack.tscn" id="4_5qja8"]
@@ -20,15 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://b527a02g1rvhf" path="res://icons/positive_press.png" id="18_ol3j0"]
 [ext_resource type="AudioStream" uid="uid://c5ei12owd7brp" path="res://Music/angelic-random.mp3" id="19_mc6fk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeaky"]
-shader = ExtResource("1_0kmah")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6gxl"]
-shader = ExtResource("1_0kmah")
-
 [sub_resource type="Animation" id="Animation_wi5qm"]
 resource_name = "0"
-length = 40.0
+length = 42.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,7 +33,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(-192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 3.0748, 19.8, 22.3)
+"times": PackedFloat32Array(0, 3.0748, 19.8, 24)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -49,7 +44,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(-1952, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, 480, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 3.0748, 19.8, 22.3)
+"times": PackedFloat32Array(0, 3.0748, 19.8, 24)
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -101,7 +96,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0, 1756, -0.25, 0, 0.25, 0, 1621, -0.25, 0, 0.25, 0, 1472, -0.25, 0, 0.25, 0, 1621, -0.25, 0, 0.25, 0, 1766, -0.25, 0, 0.25, 0, 384, -0.25, 0, 0.25, 0, 399.973, -0.25, 0, 0.25, 0, 192, -0.25, 0, 0.25, 0, 1681, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 24.7, 25.1)
+"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 26.4, 26.8)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -112,7 +107,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(160, -0.25, 0, 0.25, 0, 512, -0.25, 0, 0.25, 0, 928, -0.25, 0, 0.25, 0, 107, -0.25, 0, 0.25, 0, 288, -0.25, 0, 0.25, 0, 480, -0.25, 0, 0.25, 0, 716, -0.25, 0, 0.25, 0, 936, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 101.047, -0.25, 0, 0.25, 0, 224, -0.25, 0, 0.25, 0, 185, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 24.7, 25.1)
+"times": PackedFloat32Array(3.1, 3.3, 3.5, 5.9, 6.1, 6.3, 6.5, 6.7, 12.1, 12.3, 26.4, 26.8)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -123,7 +118,7 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(2624, -0.25, 0, 0.25, 0, 1952, -0.25, 0, 0.25, 0, 1952, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, -64, -0.25, 0, 0.25, 0, 1600, -0.25, 0, 0.25, 0, 1600, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(4.5, 5.5, 20, 21.4, 21.6, 22.2, 24.6, 34)
+"times": PackedFloat32Array(4.5, 5.5, 20, 23.1, 23.3, 23.9, 26.3, 35.7)
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
@@ -134,7 +129,7 @@ tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(-768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0, -768, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(4.5, 5.5, 20, 21.4, 21.6, 22.2, 24.6, 34)
+"times": PackedFloat32Array(4.5, 5.5, 20, 23.1, 23.3, 23.9, 26.3, 35.7)
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -143,7 +138,7 @@ tracks/7/path = NodePath("Inverters/right:polygon")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(10.6, 12.7, 18.1, 19.2, 34),
+"times": PackedFloat32Array(10.6, 12.7, 18.1, 19.2, 35.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [PackedVector2Array(-78.7693, 393.846, -354.462, 768, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-78.7693, 393.846, -354.462, 1161.85, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-78.7693, 393.846, -354.462, 1161.85, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846), PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846), PackedVector2Array(-0.000152588, 393.846, -0.000152588, 1161.85, -78.7693, 1161.85, 98.4614, 1161.85, 98.4614, 393.846)]
@@ -169,7 +164,7 @@ tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(290, -0.25, 0, 0.25, 0, 290, -0.25, 0, 0.25, 0, 290, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0, 1681, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(8, 8.5, 12.3, 24.7, 25.1)
+"times": PackedFloat32Array(8, 8.5, 12.3, 26.4, 26.8)
 }
 tracks/10/type = "bezier"
 tracks/10/imported = false
@@ -180,7 +175,7 @@ tracks/10/loop_wrap = true
 tracks/10/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0, 736, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(8, 8.5, 12.3, 24.7, 25.1)
+"times": PackedFloat32Array(8, 8.5, 12.3, 26.4, 26.8)
 }
 tracks/11/type = "bezier"
 tracks/11/imported = false
@@ -213,7 +208,7 @@ tracks/13/loop_wrap = true
 tracks/13/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(110, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(8.5, 25.1)
+"times": PackedFloat32Array(8.5, 26.8)
 }
 tracks/14/type = "bezier"
 tracks/14/imported = false
@@ -224,7 +219,7 @@ tracks/14/loop_wrap = true
 tracks/14/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(530, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(8.5, 25.1)
+"times": PackedFloat32Array(8.5, 26.8)
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -233,7 +228,7 @@ tracks/15/path = NodePath("../GameplayTexts/Control/Label:visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 17.8, 21.9),
+"times": PackedFloat32Array(0, 17.8, 23.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -245,7 +240,7 @@ tracks/16/path = NodePath("../SecondSummoner")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(30.2, 37.4),
+"times": PackedFloat32Array(31.9, 39.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [4],
@@ -262,9 +257,9 @@ tracks/17/path = NodePath("SafeArea:position:x")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(25.2, 27.7, 34.2, 35.7)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0, 950, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(26.9, 29.4, 35.9, 37.3, 37.4)
 }
 tracks/18/type = "bezier"
 tracks/18/imported = false
@@ -273,9 +268,9 @@ tracks/18/path = NodePath("SafeArea:position:y")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-256, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, -192, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(25.2, 27.7, 34.2, 35.7)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-256, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, 544, -0.25, 0, 0.25, 0, -288, -0.25, 0, 0.25, 0, -288, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(26.9, 29.4, 35.9, 37.3, 37.4)
 }
 tracks/19/type = "bezier"
 tracks/19/imported = false
@@ -286,7 +281,7 @@ tracks/19/loop_wrap = true
 tracks/19/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(704, -0.25, 0, 0.25, 0, 704, -0.25, 0, 0.25, 0, 704, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 25.2, 27.7)
+"times": PackedFloat32Array(0, 26.9, 29.4)
 }
 tracks/20/type = "bezier"
 tracks/20/imported = false
@@ -297,7 +292,7 @@ tracks/20/loop_wrap = true
 tracks/20/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-320, -0.25, 0, 0.25, 0, -320, -0.25, 0, 0.25, 0, 256, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 25.2, 27.7)
+"times": PackedFloat32Array(0, 26.9, 29.4)
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -306,7 +301,7 @@ tracks/21/path = NodePath("../GameplayTexts/Control/Label2:visible")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0.1, 22.2, 34.1),
+"times": PackedFloat32Array(0.1, 23.9, 35.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -318,10 +313,10 @@ tracks/22/path = NodePath("../GameplayTexts/Control/Label3:visible")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
-"times": PackedFloat32Array(32.4, 36.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(34.1, 37.9, 41.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, true, false]
 }
 tracks/23/type = "bezier"
 tracks/23/imported = false
@@ -332,7 +327,7 @@ tracks/23/loop_wrap = true
 tracks/23/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1216, -0.25, 0, 0.25, 0, 1216, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(35.1, 35.9)
+"times": PackedFloat32Array(36.8, 37.6)
 }
 tracks/24/type = "bezier"
 tracks/24/imported = false
@@ -343,7 +338,7 @@ tracks/24/loop_wrap = true
 tracks/24/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-1952, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(35.1, 35.9)
+"times": PackedFloat32Array(36.8, 37.6)
 }
 tracks/25/type = "bezier"
 tracks/25/imported = false
@@ -354,7 +349,7 @@ tracks/25/loop_wrap = true
 tracks/25/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(576, -0.25, 0, 0.25, 0, 576, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(34.7, 36.4)
+"times": PackedFloat32Array(36.4, 38.1)
 }
 tracks/26/type = "bezier"
 tracks/26/imported = false
@@ -365,7 +360,7 @@ tracks/26/loop_wrap = true
 tracks/26/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-1920, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(34.7, 36.4)
+"times": PackedFloat32Array(36.4, 38.1)
 }
 tracks/27/type = "bezier"
 tracks/27/imported = false
@@ -376,7 +371,7 @@ tracks/27/loop_wrap = true
 tracks/27/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(192, -0.25, 0, 0.25, 0, 192, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(34.4, 36.5)
+"times": PackedFloat32Array(36.1, 38.2)
 }
 tracks/28/type = "bezier"
 tracks/28/imported = false
@@ -387,16 +382,336 @@ tracks/28/loop_wrap = true
 tracks/28/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(463, -0.25, 0, 0.25, 0, -736, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(34.4, 36.5)
+"times": PackedFloat32Array(36.1, 38.2)
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath(".:visible")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3cjkk"]
 resource_name = "1"
-length = 5.0
-
-[sub_resource type="Animation" id="Animation_7ipfh"]
-resource_name = "2"
-length = 5.0
+length = 52.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inverters:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.2, 144, 0.25, 0),
+"times": PackedFloat32Array(0, 6.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Inverters:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2400, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6.3)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GameplayTexts/Control/Label4:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.3, 14.1912),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Part2/Hands/VerticalAttack:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(160, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0, 160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6.8, 9, 9.6, 11.6)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Part2/Hands/VerticalAttack:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1728, -0.25, 0, 0.25, 0, 1472, -0.25, 0, 0.25, 0, 576, -0.25, 0, 0.25, 0, 576, -0.25, 0, 0.25, 0, 1728, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 6.8, 9, 9.6, 11.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PartTwoInverters/Polygon2D:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 9, 9.6, 11.5, 25.2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PartTwoInverters/Polygon2D:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-1216, -0.25, 0, 0.25, 0, -1216, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 9, 11.5, 25.2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Part2/Hands/HorizontalAttack2:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2976, -0.25, 0, 0.25, 0, 2656, -0.25, 0, 0.25, 0, 972, -0.25, 0, 0.25, 0, 972, -0.25, 0, 0.25, 0, 3008, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(10.5, 13.5, 16, 20.1, 24.1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Part2/Hands/HorizontalAttack2:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(183, -0.25, 0, 0.25, 0, 183, -0.25, 0, 0.25, 0, 183, -0.25, 0, 0.25, 0, 183, -0.25, 0, 0.25, 0, 183, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(10.5, 13.5, 16, 20.1, 24.1)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Part2/Hands/HorizontalAttack:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1056, -0.25, 0, 0.25, 0, -672, -0.25, 0, 0.25, 0, 956, -0.25, 0, 0.25, 0, 956, -0.25, 0, 0.25, 0, -1064, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(11.6, 13.5, 16, 37.8489, 41.0676)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Part2/Hands/HorizontalAttack:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(896, -0.25, 0, 0.25, 0, 896, -0.25, 0, 0.25, 0, 896, -0.25, 0, 0.25, 0, 896, -0.25, 0, 0.25, 0, 896, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(11.6, 13.5, 16, 37.8489, 41.0676)
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Part2/Summoner1")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(17.3, 20.1, 30.046),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0, 4],
+"method": &"summon_on_all"
+}, {
+"args": [0, 5],
+"method": &"summon_on_all"
+}, {
+"args": [0],
+"method": &"summon_on_all"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PartTwoInverters/Polygon2D:polygon")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.1, 26.1, 26.1487, 29.1774, 34.3972, 37.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(448, 0, 1536, 0, 1536, 1120, 32, 1120, 32, 576, 448, 576), PackedVector2Array(448, 0, 1536, 0, 1536, 1120, 32, 1120, 32, 576, 448, 576), PackedVector2Array(448, 142, 544, 142, 544, 142, 704, 142, 704, 142, 800, 142, 800, 142, 960, 142, 960, 142, 1056, 142, 1056, 142, 1216, 142, 1216, 142, 1312, 142, 1312, 142, 1440, 142, 1440, 142, 1536, 142, 1536, 1120, 32, 1120, 32, 576, 448, 576), PackedVector2Array(448, -562, 544, -562, 544, 142, 704, 142, 704, -562, 800, -562, 800, 142, 960, 142, 960, -562, 1056, -562, 1056, 142, 1216, 142, 1216, -562, 1312, -562, 1312, 142, 1440, 142, 1440, -562, 1536, -562, 1536, 1120, 32, 1120, 32, 576, 448, 576), PackedVector2Array(448, -562, 544, -562, 544, 142, 704, 142, 704, -562, 800, -562, 800, 142, 960, 142, 960, -562, 1056, -562, 1056, 142, 1216, 142, 1216, -562, 1312, -562, 1312, 142, 1440, 142, 1440, -562, 1536, -562, 1536, 1120, 32, 1120, 32, 576, 448, 576), PackedVector2Array(448, 142, 544, 142, 544, 142, 704, 142, 704, 142, 800, 142, 800, 142, 960, 142, 960, 142, 1056, 142, 1056, 142, 1216, 142, 1216, 142, 1312, 142, 1312, 142, 1440, 142, 1440, 142, 1536, 142, 1536, 1120, 32, 1120, 32, 576, 448, 576)]
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Part2/Summoner1/Marker2D:position:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 592, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Part2/Summoner1/Marker2D:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(417, -0.25, 0, 0.25, 0, 83, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Part2/Summoner1/Marker2D2:position:x")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 843, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Part2/Summoner1/Marker2D2:position:y")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(616, -0.25, 0, 0.25, 0, 83, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Part2/Summoner1/Marker2D3:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1765, -0.25, 0, 0.25, 0, 1098, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Part2/Summoner1/Marker2D3:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(427, -0.25, 0, 0.25, 0, 83, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Part2/Summoner1/Marker2D4:position:x")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1765, -0.25, 0, 0.25, 0, 1344, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Part2/Summoner1/Marker2D4:position:y")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(626, -0.25, 0, 0.25, 0, 83, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(29.152, 29.748)
+}
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../Crown:modulate:r")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(41.1921, 44.2319)
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../Crown:modulate:g")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(41.1921, 44.2319)
+}
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../Crown:modulate:b")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(41.1921, 44.2319)
+}
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("../Crown:modulate:a")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(41.1921, 44.2319)
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("../Label:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0.119209, 41.1921),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/26/type = "method"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("../Outside/Player")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(44.8823),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"sleep_again"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_t44vy"]
 length = 0.001
@@ -702,14 +1017,312 @@ tracks/26/keys = {
 "points": PackedFloat32Array(463, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath(".:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/28/type = "bezier"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Inverters:position:x")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/29/type = "bezier"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Inverters:position:y")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("../GameplayTexts/Control/Label4:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/31/type = "bezier"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("../Part2/Hands/VerticalAttack:position:x")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/32/type = "bezier"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("../Part2/Hands/VerticalAttack:position:y")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1728, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/33/type = "bezier"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("PartTwoInverters/Polygon2D:position:x")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/34/type = "bezier"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("PartTwoInverters/Polygon2D:position:y")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1216, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/35/type = "bezier"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("../Part2/Hands/HorizontalAttack2:position:x")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2976, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/36/type = "bezier"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("../Part2/Hands/HorizontalAttack2:position:y")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(183, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/37/type = "bezier"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("../Part2/Hands/HorizontalAttack:position:x")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1056, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/38/type = "bezier"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("../Part2/Hands/HorizontalAttack:position:y")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(896, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/39/type = "value"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("PartTwoInverters/Polygon2D:polygon")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(448, 0, 1536, 0, 1536, 1120, 32, 1120, 32, 576, 448, 576)]
+}
+tracks/40/type = "bezier"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("../Part2/Summoner1/Marker2D:position:x")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/41/type = "bezier"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("../Part2/Summoner1/Marker2D:position:y")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(417, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/42/type = "bezier"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("../Part2/Summoner1/Marker2D2:position:x")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/43/type = "bezier"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("../Part2/Summoner1/Marker2D2:position:y")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(616, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/44/type = "bezier"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("../Part2/Summoner1/Marker2D3:position:x")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1765, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/45/type = "bezier"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("../Part2/Summoner1/Marker2D3:position:y")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(427, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/46/type = "bezier"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("../Part2/Summoner1/Marker2D4:position:x")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1765, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/47/type = "bezier"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("../Part2/Summoner1/Marker2D4:position:y")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(626, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/48/type = "bezier"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("../Crown:modulate:r")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/49/type = "bezier"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("../Crown:modulate:g")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/50/type = "bezier"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("../Crown:modulate:b")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/51/type = "bezier"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("../Crown:modulate:a")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/52/type = "value"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("../Label:visible")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvh88"]
 _data = {
 "0": SubResource("Animation_wi5qm"),
 "1": SubResource("Animation_3cjkk"),
-"2": SubResource("Animation_7ipfh"),
 "RESET": SubResource("Animation_t44vy")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeaky"]
+shader = ExtResource("1_0kmah")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6gxl"]
+shader = ExtResource("1_0kmah")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yrkrf"]
+shader = ExtResource("1_0kmah")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88raq"]
 size = Vector2(86, 1098)
@@ -720,6 +1333,43 @@ size = Vector2(1930, 20)
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_57tg7")
 metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 601.0
+offset_top = 64.0
+offset_right = 1346.0
+offset_bottom = 367.0
+grow_horizontal = 2
+theme = ExtResource("2_tq83m")
+theme_override_font_sizes/font_size = 42
+text = "let your delusions aside for now
+you are in safe place, keep resting"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -372.5
+offset_top = 740.0
+offset_right = 372.5
+offset_bottom = 1043.0
+grow_horizontal = 2
+theme = ExtResource("2_tq83m")
+theme_override_font_sizes/font_size = 42
+text = "press ESC to return your eternal sleep"
+horizontal_alignment = 1
+
+[node name="Crown" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+position = Vector2(960, 544)
+texture = ExtResource("2_isp14")
 
 [node name="GameplayTexts" type="Node2D" parent="."]
 
@@ -756,9 +1406,9 @@ z_index = 4
 layout_mode = 0
 offset_left = 704.0
 offset_top = 256.0
-offset_right = 1258.0
+offset_right = 1309.0
 offset_bottom = 363.0
-text = "enter to the safe area"
+text = "enter to the comfort zone"
 
 [node name="Label3" type="Label" parent="GameplayTexts/Control"]
 visible = false
@@ -768,6 +1418,17 @@ offset_top = 768.0
 offset_right = 1326.0
 offset_bottom = 875.0
 text = "SPACE to break them all"
+
+[node name="Label4" type="Label" parent="GameplayTexts/Control"]
+visible = false
+layout_mode = 0
+offset_left = 708.0
+offset_top = 836.0
+offset_right = 1199.0
+offset_bottom = 1037.0
+text = "DON'T TOUCH
+to your biggest fears"
+horizontal_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
 layout_direction = 1
@@ -781,6 +1442,7 @@ offset_bottom = 143.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_gocqg")
 theme_override_font_sizes/font_size = 52
+text = "12"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -797,6 +1459,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/GUI"]
+visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 463.0
@@ -813,7 +1476,7 @@ offset_left = 1152.0
 offset_right = 1533.0
 offset_bottom = 153.0
 theme_override_font_sizes/font_size = 32
-text = "left click to attack
+text = "left click to shoot
 
 shift to raise shields"
 horizontal_alignment = 1
@@ -828,8 +1491,9 @@ offset_top = 64.0
 offset_right = 661.0
 offset_bottom = 941.0
 grow_horizontal = 2
-text = "unfortunately, you are half-awake and half-asleep
-
+text = "unfortunately, you are an
+OBSERVER in Hypnopompia
+a state between wakefulness and dreaming
 
 
 
@@ -943,20 +1607,20 @@ layout_mode = 2
 texture_normal = ExtResource("13_3ofiw")
 texture_pressed = ExtResource("18_ol3j0")
 
-[node name="FirstSequence" type="Node2D" parent="."]
+[node name="FirstSequencePlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FirstSequence")
+libraries = {
+"": SubResource("AnimationLibrary_qvh88")
+}
+
+[node name="FirstSequence" type="Node2D" parent="." node_paths=PackedStringArray("sequence_player")]
+visible = false
 script = ExtResource("5_kev51")
+sequence_player = NodePath("../FirstSequencePlayer")
 metadata/_edit_lock_ = true
 
 [node name="SafeArea" parent="FirstSequence" instance=ExtResource("16_4lcj8")]
 position = Vector2(950, -256)
-
-[node name="Hands" type="Node2D" parent="FirstSequence"]
-
-[node name="VerticalAttack" parent="FirstSequence/Hands" instance=ExtResource("3_31rny")]
-position = Vector2(130, 1664)
-
-[node name="HorizontalAttack" parent="FirstSequence/Hands" instance=ExtResource("4_5qja8")]
-position = Vector2(-1056, 896)
 
 [node name="InvertedEnemies" type="Node2D" parent="FirstSequence"]
 metadata/_edit_lock_ = true
@@ -991,7 +1655,6 @@ material = SubResource("ShaderMaterial_x6gxl")
 position = Vector2(2624, -768)
 scale = Vector2(1.625, 1.625)
 polygon = PackedVector2Array(-78.7693, 393.846, -354.462, 768, -78.7693, 1161.85, 196.923, 1161.85, 194.462, 393.846)
-metadata/_edit_lock_ = true
 
 [node name="right2" type="Polygon2D" parent="FirstSequence/Inverters"]
 texture_repeat = 2
@@ -1021,14 +1684,80 @@ offset_top = -32.0
 offset_right = 1952.0
 offset_bottom = 1120.0
 
+[node name="PartTwoInverters" type="Node2D" parent="FirstSequence"]
+z_index = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="FirstSequence/PartTwoInverters"]
+material = SubResource("ShaderMaterial_yrkrf")
+position = Vector2(-32, -1216)
+polygon = PackedVector2Array(448, 0, 1536, 0, 1536, 1120, 32, 1120, 32, 576, 448, 576)
+metadata/_edit_lock_ = true
+
 [node name="DefaultEnemies" type="Node2D" parent="FirstSequence"]
 z_index = 4
 metadata/_edit_lock_ = true
 
-[node name="FirstSequencePlayer" type="AnimationPlayer" parent="FirstSequence"]
-libraries = {
-"": SubResource("AnimationLibrary_qvh88")
-}
+[node name="try" type="Label" parent="FirstSequence"]
+visible = false
+offset_left = 679.0
+offset_top = 471.0
+offset_right = 1262.0
+offset_bottom = 570.0
+theme = ExtResource("2_tq83m")
+text = "press SPACE to try again"
+
+[node name="Part2" type="Node2D" parent="."]
+
+[node name="Summoner1" type="Node2D" parent="Part2" node_paths=PackedStringArray("inverted_layer", "default_layer")]
+script = ExtResource("6_t1sbh")
+inverted_layer = NodePath("../../FirstSequence/InvertedEnemies")
+default_layer = NodePath("../../FirstSequence/DefaultEnemies")
+
+[node name="Marker2D" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(64, 417)
+
+[node name="Marker2D2" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(64, 616)
+
+[node name="Marker2D3" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(1765, 427)
+
+[node name="Marker2D4" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(1765, 626)
+
+[node name="Marker2D5" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(1768, 522)
+
+[node name="Marker2D6" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(59, 522)
+
+[node name="Marker2D7" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(184, 381)
+
+[node name="Marker2D8" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(160, 699)
+
+[node name="Marker2D9" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(1681, 363)
+
+[node name="Marker2D10" type="Marker2D" parent="Part2/Summoner1"]
+position = Vector2(1676, 691)
+
+[node name="Hands" type="Node2D" parent="Part2"]
+z_index = -1
+
+[node name="VerticalAttack" parent="Part2/Hands" instance=ExtResource("3_31rny")]
+position = Vector2(160, 1728)
+
+[node name="HorizontalAttack" parent="Part2/Hands" instance=ExtResource("4_5qja8")]
+position = Vector2(-1056, 896)
+
+[node name="HorizontalAttack2" parent="Part2/Hands" instance=ExtResource("4_5qja8")]
+position = Vector2(2976, 183)
+metadata/_edit_group_ = true
+
+[node name="HorizontalAttackSprite" parent="Part2/Hands/HorizontalAttack2" index="0"]
+flip_h = true
 
 [node name="Outside" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -1079,6 +1808,7 @@ position = Vector2(192, 389)
 position = Vector2(110, 530)
 
 [node name="SecondSummoner" type="Node2D" parent="." node_paths=PackedStringArray("inverted_layer", "default_layer")]
+visible = false
 script = ExtResource("6_t1sbh")
 inverted_layer = NodePath("../FirstSequence/InvertedEnemies")
 default_layer = NodePath("../FirstSequence/DefaultEnemies")
@@ -1162,6 +1892,8 @@ bus = &"Music"
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Negative" to="CanvasLayer/GUI" method="_on_sfx_negative_pressed"]
 [connection signal="toggled" from="CanvasLayer/GUI/SoundOptions/SFX/Mute" to="CanvasLayer/GUI" method="_on_sfx_mute_toggled"]
 [connection signal="pressed" from="CanvasLayer/GUI/SoundOptions/SFX/Positive" to="CanvasLayer/GUI" method="_on_sfx_positive_pressed"]
-[connection signal="animation_changed" from="FirstSequence/FirstSequencePlayer" to="FirstSequence" method="_on_animation_changed"]
+[connection signal="animation_changed" from="FirstSequencePlayer" to="FirstSequence" method="_on_animation_changed"]
 [connection signal="stop_sequence" from="Outside/Player" to="FirstSequence" method="_on_player_stop_sequence"]
 [connection signal="timeout" from="textdisappertime" to="." method="_on_textdisappertime_timeout"]
+
+[editable path="Part2/Hands/HorizontalAttack2"]

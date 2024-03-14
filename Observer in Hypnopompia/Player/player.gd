@@ -37,7 +37,7 @@ enum hurted_type {Enemy, Player, Area, OneShot}
 @export var camera : Node2D
 @export var dash_cooldown := 5.5
 @export var br_cooldown := 15.0
-
+var sleeping := false
 var speed = 700
 
 #INFO: for controller
@@ -74,6 +74,19 @@ func _process(_delta):
 	if Input.get_connected_joypads() > [0]:
 		direction_line.visible = true
 		direction_line.set_point_position(1, looking_direction.normalized() * 100)
+
+func sleep_again()->void:
+	sleeping = true
+	can_take_damage = false
+	eye_b.texture = EYE_REAL_CLOSED
+	speed = 100
+	await get_tree().create_timer(2).timeout
+	set_process(false)
+	set_process_input(false)
+	set_physics_process(false)
+	var tweeeen = create_tween()
+	tweeeen.tween_property(self, "position", Vector2(1920/2, 1080/2), 3)
+	
 
 #INFO: its hell down there	
 func _input(event):
@@ -218,4 +231,6 @@ func _on_break_cooldown_timeout():
 
 
 func _on_eye_open_timer_timeout():
+	if sleeping:
+		return
 	eye_b.texture = EYE_OPEN

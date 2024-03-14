@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var sequence_player = $FirstSequencePlayer
+@export var sequence_player : AnimationPlayer
 var on_sequence := false
 var ded := false
+@onready var try = $try
 
 
 func start_sequence() -> void:
@@ -10,7 +11,6 @@ func start_sequence() -> void:
 	General.player.can_move = true
 	sequence_player.play("0")
 	sequence_player.queue("1")
-	sequence_player.queue("2")
 	print(sequence_player.get_queue())
 
 func update_call() -> void:
@@ -23,6 +23,8 @@ func _unhandled_input(event):
 		General.player.switch_process_state(true)
 
 func go_back_checkpoint() -> void:
+	try.visible = false
+	
 	for i in get_tree().get_nodes_in_group("enemy"):
 		i.hurt()
 	for i in get_tree().get_nodes_in_group("bullet"):
@@ -33,6 +35,8 @@ func go_back_checkpoint() -> void:
 	print("im called")
 
 func _on_player_stop_sequence():
+	freeze_enemies()
+	try.visible = true
 	ded = true
 	sequence_player.stop()
 
