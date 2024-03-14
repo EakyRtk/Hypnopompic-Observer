@@ -1346,7 +1346,7 @@ offset_bottom = 367.0
 grow_horizontal = 2
 theme = ExtResource("2_tq83m")
 theme_override_font_sizes/font_size = 42
-text = "let your delusions aside for now
+text = "put your hallucinations aside for now
 you are in safe place, keep resting"
 horizontal_alignment = 1
 
@@ -1435,10 +1435,10 @@ layout_direction = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1756.0
-offset_top = 64.0
-offset_right = 1866.0
-offset_bottom = 143.0
+offset_left = 1727.0
+offset_top = 61.0
+offset_right = 1837.0
+offset_bottom = 140.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_gocqg")
 theme_override_font_sizes/font_size = 52
@@ -1481,7 +1481,7 @@ text = "left click to shoot
 shift to raise shields"
 horizontal_alignment = 1
 
-[node name="starttext" type="Label" parent="CanvasLayer/GUI"]
+[node name="starttext" type="RichTextLabel" parent="CanvasLayer/GUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1491,16 +1491,19 @@ offset_top = 64.0
 offset_right = 661.0
 offset_bottom = 941.0
 grow_horizontal = 2
-text = "unfortunately, you are an
-OBSERVER in Hypnopompia
-a state between wakefulness and dreaming
+bbcode_enabled = true
+text = "[center][font_size=52]unfortunately, you are an[/font_size]
+[color=cyan]OBSERVER[/color] [color=orange]in[/color] [color=magenta]Hypnopompia[/color]
+[font_size=52]a state between wakefulness and dreaming[/font_size]
 
 
 
 
 press any key twice to leak your 
-consciousness into the reality"
-horizontal_alignment = 1
+consciousness into the reality
+[/center]"
+fit_content = true
+scroll_active = false
 
 [node name="SoundOptions" type="VBoxContainer" parent="CanvasLayer/GUI"]
 layout_mode = 1
